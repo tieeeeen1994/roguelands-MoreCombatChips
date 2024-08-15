@@ -1,0 +1,64 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Check if Release folder exists
+      id: check_release_folder
+      run: |
+        if [ -d "Release" ]; then
+          echo "exists=true" >> $GITHUB_ENV
+        else
+          echo "exists=false" >> $GITHUB_ENV
+        fi
+
+    - name: Read changelog
+      id: read_changelog
+      if: env.exists == 'true'
+      run: |
+        if [ -f ".changelog" ]; then
+          changelog=$(cat .changelog)
+          echo "changelog<<EOF" >> $GITHUB_ENV
+          echo "$changelog" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+        else
+          echo "changelog=" >> $GITHUB_ENV
+        fi
+
+    - name: Create Release
+      id: create_release
+      if: env.exists == 'true'
+      uses: ncipollo/release-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.ref_name }}
+        name: ${{ github.ref_name }}
+        body: ${{ env.changelog }}
+        draft: false
+        prerelease: false
+        artifacts: Release/MoreCombatChips_v*.zip
+
+    - name: Delete Release folder
+      if: env.exists == 'true'
+      run: rm -rf Release
+
+    - name: Commit changes
+      if: env.exists == 'true'
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add .
+        git commit -m "GitHub Actions: Delete Release folder after creating release."
+        git push origin HEAD:master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
