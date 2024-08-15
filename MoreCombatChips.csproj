@@ -15,10 +15,10 @@
     <FileAlignment>512</FileAlignment>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Configurations>Release</Configurations>
-    <Authors>blancfaye7</Authors>
+    <Authors>Tien</Authors>
     <ApplicationIcon />
     <StartupObject />
-    <Platforms>x86</Platforms>
+    <Platforms>x86;x86</Platforms>
     <FileUpgradeFlags>40</FileUpgradeFlags>
     <UpgradeBackupLocation>C:\Users\Chen\Documents\Roguelands Modding\MoreCombatChips\Backup1\</UpgradeBackupLocation>
     <OldToolsVersion>Current</OldToolsVersion>
@@ -95,9 +95,6 @@
     <Copy SourceFiles="$(TargetDir)$(AssemblyName)_v$(AssemblyFileVersion).zip" DestinationFiles="$(GamePath)GadgetCore\Mods\$(AssemblyName)_v$(AssemblyFileVersion).zip" />
     <Message Importance="High" Text="Mod Exported to $(GamePath)GadgetCore\Mods\$(AssemblyName)_v$(AssemblyFileVersion).zip" />
   </Target>
-  <ItemGroup>
-    <None Include="..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
   <ItemGroup>
     <Compile Update="CombatChips\MessyMkIChip.cs">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

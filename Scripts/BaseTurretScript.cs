@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
-namespace Roguelands.MoreCombatChips.Scripts
+namespace MoreCombatChips.Scripts
 {
-  public abstract class BaseTurretScript : BaseScript
-  {
-    protected virtual void Die()
+    public abstract class BaseTurretScript : BaseScript
     {
-      Instantiate(Resources.Load("ex2"), transform.position, Quaternion.identity);
-      Network.RemoveRPCs(GetComponent<NetworkView>().viewID);
-      if (Network.isServer)
-      {
-        Network.Destroy(gameObject);
-      }
+        protected virtual void Die()
+        {
+            Instantiate(Resources.Load("ex2"), transform.position, Quaternion.identity);
+            Network.RemoveRPCs(GetComponent<NetworkView>().viewID);
+            if (Network.isServer)
+            {
+                Network.Destroy(gameObject);
+            }
+        }
     }
-  }
 }

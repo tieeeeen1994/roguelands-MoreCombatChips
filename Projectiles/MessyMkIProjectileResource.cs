@@ -1,22 +1,22 @@
 ﻿using GadgetCore.API;
-using Roguelands.MoreCombatChips.Scripts;
+using MoreCombatChips.Scripts;
 using UnityEngine;
 
-namespace Roguelands.MoreCombatChips.Projectiles
+namespace MoreCombatChips.Projectiles
 {
-  internal class MessyMkIProjectileResource : BaseProjectileResource
-  {
-    public void AddResource()
+    internal class MessyMkIProjectileResource : BaseProjectileResource
     {
-      gameObject = Object.Instantiate(GadgetCoreAPI.GetSpecialProjectileResource("silversh"));
-      AddProjectileBehavior();
-      GadgetCoreAPI.AddCustomResource("MoreCombatChips/MessyMkIProjectile", gameObject);
-    }
+        public void AddResource()
+        {
+            gameObject = Object.Instantiate(GadgetCoreAPI.GetSpecialProjectileResource("silversh"));
+            AddProjectileBehavior();
+            GadgetCoreAPI.AddCustomResource("MoreCombatChips/MessyMkIProjectile", gameObject);
+        }
 
-    private void AddProjectileBehavior()
-    {
-      Object.Destroy(gameObject.GetComponent<Projectile>());
-      gameObject.AddComponent<MessyMkIProjectileScript>();
+        private void AddProjectileBehavior()
+        {
+            Object.Destroy(gameObject.GetComponent<Projectile>());
+            gameObject.AddComponent<MessyMkIProjectileScript>();
+        }
     }
-  }
 }
