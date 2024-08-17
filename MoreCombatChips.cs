@@ -8,7 +8,7 @@ namespace MoreCombatChips
     [Gadget("More Combat Chips", true)]
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
-        public const string MOD_VERSION = "1.0"; // Set this to the version of your mod.
+        public const string MOD_VERSION = "1.1"; // Set this to the version of your mod.
         public const string CONFIG_VERSION = "0.0"; // Increment this whenever you change your mod's config file.
 
         public static List<ModdedChip> ModdedChipsList = new List<ModdedChip>();
@@ -37,7 +37,7 @@ namespace MoreCombatChips
 
         public override string GetModDescription()
         {
-            return "This mod adds a wide array of custom Combat Chips! Vanilla chips are untouched.";
+            return "This mod adds a wide array of custom Combat Chips, and applies a few fixes!";
         }
 
         protected override void Initialize()
