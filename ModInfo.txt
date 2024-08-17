@@ -1,1 +1,6 @@
-This mod adds a wide array of custom Combat Chips, and applies a few fixes!
+This mod adds a wide array of custom Combat Chips, all available in Old Earth.
+It also applies a few changes and fixes.
+- Gadget RPG now increases TEC instead of DEX and FTH.
+- Rebellion Headpiece augment now has an effect.
+- Quadracopter is functionally fixed for multiplayer.
+- Quadracopter now only costs 30 MP.

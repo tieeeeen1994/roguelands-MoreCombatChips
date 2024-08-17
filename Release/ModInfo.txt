@@ -1,6 +1,4 @@
-Change the cost of Quadracopter to 30 MP, and add a new effect to the Rebellion Headpiece augment.
-Description:
-This mod adds a wide array of custom Combat Chips, all available in Old Earth.
+This mod adds a wide array of custom Combat Chips.
 It also applies a few changes and fixes.
 - Gadget RPG now increases TEC instead of DEX and FTH.
 - Rebellion Headpiece augment now has an effect.

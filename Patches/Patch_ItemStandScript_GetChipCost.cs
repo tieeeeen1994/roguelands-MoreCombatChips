@@ -5,6 +5,9 @@ using MoreCombatChips.Services;
 
 namespace MoreCombatChips.Patches
 {
+    /// <summary>
+    /// This will initialize the cost of the combat chips in the item stands.
+    /// </summary>
     [HarmonyPatch(typeof(ItemStandScript))]
     [HarmonyPatch("GetChipCost")]
     [HarmonyGadget("More Combat Chips")]
@@ -13,7 +16,6 @@ namespace MoreCombatChips.Patches
         [HarmonyPrefix]
         public static bool Prefix(int id, ref int __result)
         {
-            MoreCombatChips.Log($"Starting GetChipCost: ID is {id}");
             int index = ChipManagementService.GetIndexFromList(id);
             if (index != -1)
             {

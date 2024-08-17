@@ -7,8 +7,8 @@ namespace MoreCombatChips.Scripts
     {
         private int damage;
         private int xDirection;
-        private readonly int attackTimes = 20;
-        private readonly float attackRate = 0.3f;
+        private readonly int attackTimes = 30;
+        private readonly float attackRate = 0.5f;
         private readonly float speed = 1.2f;
 
         public void Set(int damage, int xDirection)
@@ -26,11 +26,6 @@ namespace MoreCombatChips.Scripts
             this.xDirection = xDirection;
             Vector3 oldScale = gameObject.transform.localScale;
             gameObject.transform.localScale = new Vector3(oldScale.x * xDirection, oldScale.y, oldScale.z);
-        }
-
-        private void Awake()
-        {
-
         }
 
         private void Update()

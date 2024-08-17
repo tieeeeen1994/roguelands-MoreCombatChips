@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace MoreCombatChips.Patches
 {
+    /// <summary>
+    /// This adds the combat chips from this mod to the item stands.
+    /// </summary>
     [HarmonyPatch(typeof(ItemStandScript))]
     [HarmonyPatch("GetChip")]
     [HarmonyGadget("More Combat Chips")]
@@ -16,7 +19,7 @@ namespace MoreCombatChips.Patches
             if (__instance.isAdvanced)
             {
                 int randNum = Random.Range(0, 100);
-                if (randNum < 3)
+                if (randNum < 5)
                 {
                     __result = ChipManagementService.RandomlyGetIDFromAdvanced();
                     MoreCombatChips.Log($"Generating Item Stand with Chip ID {__result}");

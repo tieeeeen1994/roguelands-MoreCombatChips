@@ -4,26 +4,25 @@ using HarmonyLib;
 namespace MoreCombatChips.Patches
 {
     /// <summary>
-    /// This will change the base stats of weapons or gears.
+    /// This will modify costs of vanilla Combat Chips.
     /// </summary>
     [HarmonyPatch(typeof(GameScript))]
-    [HarmonyPatch("GetGearBaseStats")]
+    [HarmonyPatch("GetChipCost")]
     [HarmonyGadget("More Combat Chips")]
-    public static class Patch_GameScript_GetGearBaseStats
+    public static class Patch_GameScript_GetChipCost
     {
         [HarmonyPrefix]
-        public static bool Prefix(int id, ref int[] __result)
+        public static bool Prefix(int id, ref int __result)
         {
-            if (id == 473) // Gadget RPG
+            if (id == 22) // Quadracopter
             {
-                __result = new int[] { 2, 0, 0, 6, 0, 0 };
-                return false;
+                __result = 30;
             }
             else
             {
                 return true;
             }
-
+            return false;
         }
     }
 }

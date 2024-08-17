@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace MoreCombatChips.Patches
 {
+    /// <summary>
+    /// This will fix the Quadcopter's movement in multiplayer.
+    /// </summary>
     [HarmonyPatch(typeof(Copter))]
     [HarmonyPatch("Start")]
     [HarmonyGadget("More Combat Chips")]

@@ -8,7 +8,7 @@ namespace MoreCombatChips.CombatChips
 {
     public class AttackerDroneChip : BaseChip
     {
-        public override int Damage => InstanceTracker.GameScript.GetFinalStat(3);
+        public override int Damage => InstanceTracker.GameScript.GetFinalStat(3) * 2;
 
         public override ChipType Type => ChipType.ACTIVE;
 
