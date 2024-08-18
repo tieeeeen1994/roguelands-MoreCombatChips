@@ -1,16 +1,18 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.DataStructures;
 using UnityEngine;
+using CI = GadgetCore.API.ChipInfo;
 
 namespace MoreCombatChips.CombatChips
 {
     public abstract class BaseChip
     {
-        public ChipInfo combatChip;
+        public CI ChipInfo => _chipInfo;
 
-        public BaseChip()
+        private readonly CI _chipInfo;
+
+        protected BaseChip()
         {
-            combatChip = new ChipInfo(Type, Name, Description, Cost, ObjectTexture, Stats, CostType);
+            _chipInfo = new CI(Type, Name, Description, Cost, ObjectTexture, Stats, CostType);
         }
 
         public virtual int Damage => 0;
@@ -23,44 +25,33 @@ namespace MoreCombatChips.CombatChips
 
         public virtual int Cost => -1;
 
-        public virtual ChipInfo.ChipCostType CostType => ChipInfo.ChipCostType.MANA;
-
-        public virtual Texture ObjectTexture => GadgetCoreAPI.LoadTexture2D(GetType().Name);
+        public virtual Texture2D ObjectTexture => GadgetCoreAPI.LoadTexture2D(GetType().Name);
 
         public virtual EquipStats Stats => new EquipStats(0);
 
-        public virtual string KeyName => GetType().Name;
+        public virtual CI.ChipCostType CostType => CI.ChipCostType.MANA;
 
-        protected virtual void Action(int slot)
-        {
-        }
+        protected virtual void Action(int slot) { }
 
-        protected virtual void AddRequiredResources()
-        {
-        }
-
-        protected virtual void StoreExtraDetails(ref ModdedChip moddedChip)
-        {
-        }
-
-        protected void ApplyMoreAdvancedChipData(ref ModdedChip moddedChip)
-        {
-            moddedChip.SetCost(11, 16);
-            moddedChip.isAdvanced = true;
-        }
+        protected virtual void AddRequiredResources() { }
 
         public void Register()
         {
-            combatChip.OnUse += Action;
-            combatChip.Register(KeyName);
-            MoreCombatChips.Log($"Registered Chip: {combatChip.Name} with ID {combatChip.GetID()}" +
-                                $" as {combatChip.GetRegistryName()}");
-
-            ModdedChip thisChip = new ModdedChip(combatChip);
-            StoreExtraDetails(ref thisChip);
-            MoreCombatChips.ModdedChipsList.Add(thisChip);
-
+            _chipInfo.OnUse += Action;
+            _chipInfo.Register(GetType().Name);
             AddRequiredResources();
+            MoreCombatChips.ModdedChips.Add(this);
+            MoreCombatChips.Log($"Registered Chip: {_chipInfo.Name} with ID {_chipInfo.GetID()}" +
+                                $" as {_chipInfo.GetRegistryName()}");
         }
+    }
+
+    public abstract class BaseChip<T> : BaseChip where T : BaseChip<T>, new()
+    {
+        private static readonly T _instance = new T();
+
+        public static T Instance => _instance;
+
+        public static T I => Instance;
     }
 }

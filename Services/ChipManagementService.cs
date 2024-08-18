@@ -1,8 +1,7 @@
 ﻿using GadgetCore.API;
 using GadgetCore.Util;
-using MoreCombatChips.DataStructures;
+using MoreCombatChips.CombatChips;
 using MoreCombatChips.Exceptions;
-using System.Collections.Generic;
 using UnityEngine;
 using static MoreCombatChips.MoreCombatChips;
 
@@ -12,19 +11,18 @@ namespace MoreCombatChips.Services
     {
         public static int RandomlyGetIDFromAdvanced()
         {
-            List<ModdedChip> chipsList = AdvancedChips();
-            int randNum = Random.Range(0, chipsList.Count);
-            return chipsList[randNum].chipInfo.GetID();
+            int randNum = Random.Range(0, ModdedChips.Count);
+            return ModdedChips[randNum].ChipInfo.GetID();
         }
 
         public static int GetIndexFromList(int id)
         {
-            return ModdedChipsList.FindIndex(mc => mc.chipInfo.GetID() == id);
+            return ModdedChips.FindIndex(mc => mc.ChipInfo.GetID() == id);
         }
 
-        public static ModdedChip GetChipByIndex(int index)
+        public static BaseChip GetChipByIndex(int index)
         {
-            return ModdedChipsList[index];
+            return ModdedChips[index];
         }
 
         public static int IsChipEquipped(int id)
@@ -50,20 +48,15 @@ namespace MoreCombatChips.Services
 
         public static int IsChipEquipped(string keyName)
         {
-            var moddedChip = ModdedChipsList.Find(mc => mc.chipInfo.GetRegistryName() == $"More Combat Chips:{keyName}");
+            var moddedChip = ModdedChips.Find(mc => mc.ChipInfo.GetRegistryName() == $"More Combat Chips:{keyName}");
             if (moddedChip == null)
             {
                 throw new ModdedChipNotFoundException(keyName);
             }
             else
             {
-                return IsChipEquipped(moddedChip.chipInfo.GetID());
+                return IsChipEquipped(moddedChip.ChipInfo.GetID());
             }
-        }
-
-        private static List<ModdedChip> AdvancedChips()
-        {
-            return ModdedChipsList.FindAll(mc => mc.isAdvanced);
         }
     }
 }

@@ -1,14 +1,14 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.DataStructures;
+using MoreCombatChips.ID;
 using MoreCombatChips.Projectiles;
 using MoreCombatChips.Scripts;
 using UnityEngine;
 
 namespace MoreCombatChips.CombatChips
 {
-    public class AttackerDroneChip : BaseChip
+    public class AttackerDroneChip : BaseChip<AttackerDroneChip>
     {
-        public override int Damage => InstanceTracker.GameScript.GetFinalStat(3) * 2;
+        public override int Damage => InstanceTracker.GameScript.GetFinalStat((int)StatID.TEC) * 2;
 
         public override ChipType Type => ChipType.ACTIVE;
 
@@ -34,12 +34,6 @@ namespace MoreCombatChips.CombatChips
         {
             new AttackerDroneResource().AddResource();
             new AttackerDroneProjectileResource().AddResource();
-        }
-
-        protected override void StoreExtraDetails(ref ModdedChip moddedChip)
-        {
-            base.StoreExtraDetails(ref moddedChip);
-            ApplyMoreAdvancedChipData(ref moddedChip);
         }
     }
 }

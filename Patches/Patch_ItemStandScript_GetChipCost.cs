@@ -1,7 +1,7 @@
 using GadgetCore.API;
 using HarmonyLib;
-using MoreCombatChips.DataStructures;
 using MoreCombatChips.Services;
+using UnityEngine;
 
 namespace MoreCombatChips.Patches
 {
@@ -19,12 +19,8 @@ namespace MoreCombatChips.Patches
             int index = ChipManagementService.GetIndexFromList(id);
             if (index != -1)
             {
-                ModdedChip modChip = ChipManagementService.GetChipByIndex(index);
-                if (modChip.minCost >= 0 && modChip.maxCost >= 0)
-                {
-                    __result = modChip.ComputeCost();
-                    return false;
-                }
+                __result = Random.Range(11, 16);
+                return false;
             }
             return true;
         }

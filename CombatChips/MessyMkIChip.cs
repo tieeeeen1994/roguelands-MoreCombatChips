@@ -1,5 +1,4 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.DataStructures;
 using MoreCombatChips.Projectiles;
 using MoreCombatChips.Scripts;
 using UnityEngine;
@@ -14,7 +13,8 @@ namespace MoreCombatChips.CombatChips
 
         public override string Name => "Messy Mk. I";
 
-        public override string Description => "Throw Messy so it wreaks havoc to enemies near it. It needs energy to power it up.";
+        public override string Description => "Throw Messy so it wreaks havoc to enemies near it." +
+                                              "It needs energy to power it up.";
 
         public override int Cost => 30;
 
@@ -39,12 +39,6 @@ namespace MoreCombatChips.CombatChips
         {
             // Z coordinate is also being updated.
             return (GadgetCoreAPI.GetCursorPos() - initialPosition).normalized;
-        }
-
-        protected override void StoreExtraDetails(ref ModdedChip moddedChip)
-        {
-            base.StoreExtraDetails(ref moddedChip);
-            ApplyMoreAdvancedChipData(ref moddedChip);
         }
     }
 }

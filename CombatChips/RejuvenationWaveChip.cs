@@ -1,5 +1,4 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.DataStructures;
 
 namespace MoreCombatChips.CombatChips
 {
@@ -13,11 +12,5 @@ namespace MoreCombatChips.CombatChips
             "Healing Ward: Heal +1 HP more per 100 FTH.\n" +
             "Angelic Augur: Heal +1 more HP per 50 FTH.\n" +
             "This effect is not stackable.";
-
-        protected override void StoreExtraDetails(ref ModdedChip moddedChip)
-        {
-            base.StoreExtraDetails(ref moddedChip);
-            ApplyMoreAdvancedChipData(ref moddedChip);
-        }
     }
 }

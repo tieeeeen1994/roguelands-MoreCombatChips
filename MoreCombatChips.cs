@@ -1,17 +1,16 @@
+using System.Collections.Generic;
 using GadgetCore.API;
 using MoreCombatChips.CombatChips;
-using MoreCombatChips.DataStructures;
-using System.Collections.Generic;
 
 namespace MoreCombatChips
 {
     [Gadget("More Combat Chips", true)]
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
-        public const string MOD_VERSION = "1.4"; // Set this to the version of your mod.
+        public const string MOD_VERSION = "1.5"; // Set this to the version of your mod.
         public const string CONFIG_VERSION = "0.0"; // Increment this whenever you change your mod's config file.
 
-        public static List<ModdedChip> ModdedChipsList = new List<ModdedChip>();
+        internal static List<BaseChip> ModdedChips = new List<BaseChip>();
 
         public static void Log(string message)
         {
@@ -58,11 +57,6 @@ namespace MoreCombatChips
             new TechXXChip().Register();
             new FaithXXChip().Register();
             new RejuvenationWaveChip().Register();
-        }
-
-        protected override void Unload()
-        {
-            ModdedChipsList.Clear();
         }
     }
 }
