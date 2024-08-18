@@ -1,5 +1,6 @@
 ﻿using GadgetCore.API;
 using HarmonyLib;
+using MoreCombatChips.ID;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -27,8 +28,6 @@ namespace MoreCombatChips.Patches
             );
             for (int i = 0; i < codes.Count; i++)
             {
-                MoreCombatChips.Log("-----");
-                MoreCombatChips.Log(codes[i].opcode.ToString());
                 if (i >= 1 &&
                     codes[i - 1].opcode == OpCodes.Stsfld && codes[i - 1].operand == matcherOperand &&
                     codes[i].opcode == OpCodes.Ldsfld && codes[i].operand == matcherOperand &&
@@ -50,16 +49,18 @@ namespace MoreCombatChips.Patches
         private static void ExtraAugmentEffects()
         {
             MoreCombatChips.Log("Patch_GameScript_UpdateHP: It works!");
-            if (Menuu.curAugment == 22) // Rebellion Headpiece
+            switch ((AugmentID)Menuu.curAugment)
             {
-                if (GameScript.maxhp > 75)
-                {
-                    GameScript.maxhp = 75;
-                }
-                if (GameScript.hp > 75)
-                {
-                    GameScript.hp = 75;
-                }
+                case AugmentID.RebellionHeadpiece:
+                    if (GameScript.maxhp > 75)
+                    {
+                        GameScript.maxhp = 75;
+                    }
+                    if (GameScript.hp > 75)
+                    {
+                        GameScript.hp = 75;
+                    }
+                    break;
             }
         }
     }

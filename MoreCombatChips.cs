@@ -8,7 +8,7 @@ namespace MoreCombatChips
     [Gadget("More Combat Chips", true)]
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
-        public const string MOD_VERSION = "1.3"; // Set this to the version of your mod.
+        public const string MOD_VERSION = "1.4"; // Set this to the version of your mod.
         public const string CONFIG_VERSION = "0.0"; // Increment this whenever you change your mod's config file.
 
         public static List<ModdedChip> ModdedChipsList = new List<ModdedChip>();
@@ -57,6 +57,7 @@ namespace MoreCombatChips
             new IntelligenceXXChip().Register();
             new TechXXChip().Register();
             new FaithXXChip().Register();
+            new RejuvenationWaveChip().Register();
         }
 
         protected override void Unload()
