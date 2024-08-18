@@ -8,7 +8,7 @@ namespace MoreCombatChips
     [Gadget("More Combat Chips", true)]
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
-        public const string MOD_VERSION = "1.2"; // Set this to the version of your mod.
+        public const string MOD_VERSION = "1.3"; // Set this to the version of your mod.
         public const string CONFIG_VERSION = "0.0"; // Increment this whenever you change your mod's config file.
 
         public static List<ModdedChip> ModdedChipsList = new List<ModdedChip>();
@@ -42,7 +42,8 @@ namespace MoreCombatChips
                    "- Gadget RPG now increases TEC instead of DEX and FTH.\n" +
                    "- Rebellion Headpiece augment now has an effect.\n" +
                    "- Quadracopter is functionally fixed for multiplayer.\n" +
-                   "- Quadracopter now only costs 30 MP.";
+                   "- Quadracopter now only costs 30 MP.\n" +
+                   "- Add more random names from franchises for character creation.";
         }
 
         protected override void Initialize()
