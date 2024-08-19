@@ -1,8 +1,8 @@
 ﻿namespace MoreCombatChips.ID
 {
-    public enum AugmentID : int
+    public static class AugmentID
     {
-        CreatorMask = 21,
-        RebellionHeadpiece = 22
+        public const int CreatorMask = 21;
+        public const int RebellionHeadpiece = 22;
     }
 }

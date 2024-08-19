@@ -1,6 +1,7 @@
 ﻿using GadgetCore.API;
 using HarmonyLib;
 using MoreCombatChips.ID;
+using MoreCombatChips.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -60,19 +61,19 @@ namespace MoreCombatChips.Patches
         private static void ExtraAugmentComputation(ref int[] array2)
         {
             MoreCombatChips.Log("Patch_GameScript_LevelUp2: It works!");
-            switch ((AugmentID)Menuu.curAugment)
+            switch (Menuu.curAugment)
             {
                 case AugmentID.RebellionHeadpiece:
-                    array2[(int)StatID.DEX] += 2;
+                    array2[StatID.DEX] += 2;
                     break;
                 case AugmentID.CreatorMask:
-                    if (UnityEngine.Random.Range(0, 100) < 25)
+                    if (Util.RandomCheck(25))
                     {
-                        array2[(int)StatID.MAG] += 1;
+                        array2[StatID.MAG] += 1;
                     }
                     else
                     {
-                        array2[(int)StatID.FTH] += 1;
+                        array2[StatID.FTH] += 1;
                     }
                     break;
             }

@@ -10,7 +10,8 @@ namespace MoreCombatChips.Projectiles
         public GameObject gameObject;
 
         [MethodImpl(MethodImplOptions.NoInlining)]
-        protected void LogComponents(Type type, Func<Type, Component[]> func, string message = "Loop through components")
+        protected void LogComponents(Type type, Func<Type, Component[]> func,
+                                     string message = "Loop through components")
         {
             string methodName = new StackTrace().GetFrame(1).GetMethod().Name;
             MoreCombatChips.Log($"{GetType().Name}.{methodName}: {message}.");

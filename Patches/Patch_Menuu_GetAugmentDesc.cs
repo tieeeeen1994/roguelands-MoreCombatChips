@@ -15,10 +15,11 @@ namespace MoreCombatChips.Patches
         [HarmonyPrefix]
         public static bool Prefix(int a, ref string __result)
         {
-            switch ((AugmentID)a)
+            switch (a)
             {
                 case AugmentID.RebellionHeadpiece:
-                    __result = "Headgear worn by a true Rebel of the Starlight Empire.\nMax HP is now 75. Gain 2 DEX per level.";
+                    __result = "Headgear worn by a true Rebel of the Starlight Empire.\n" +
+                               "Max HP is now 75. Gain 2 DEX per level.";
                     break;
                 case AugmentID.CreatorMask:
                     __result = "A mask crafted by the fabric of time and space.\n" +

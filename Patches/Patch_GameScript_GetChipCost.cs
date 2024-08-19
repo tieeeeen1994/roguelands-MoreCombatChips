@@ -1,5 +1,6 @@
 ﻿using GadgetCore.API;
 using HarmonyLib;
+using MoreCombatChips.ID;
 
 namespace MoreCombatChips.Patches
 {
@@ -14,15 +15,21 @@ namespace MoreCombatChips.Patches
         [HarmonyPrefix]
         public static bool Prefix(int id, ref int __result)
         {
-            if (id == 22) // Quadracopter
+            switch (id)
             {
-                __result = 30;
+                case CombatChipID.Quadracopter:
+                    if (MoreCombatChips.QuadracopterCost)
+                    {
+                        __result = 30;
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                default:
+                    return true;
             }
-            else
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

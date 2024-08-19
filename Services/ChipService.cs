@@ -1,30 +1,27 @@
-﻿using GadgetCore.API;
+﻿using System;
+using GadgetCore.API;
 using GadgetCore.Util;
-using MoreCombatChips.DataStructures;
-using MoreCombatChips.Exceptions;
-using System.Collections.Generic;
-using UnityEngine;
+using MoreCombatChips.CombatChips;
 using static MoreCombatChips.MoreCombatChips;
 
 namespace MoreCombatChips.Services
 {
-    public static class ChipManagementService
+    public static class ChipService
     {
         public static int RandomlyGetIDFromAdvanced()
         {
-            List<ModdedChip> chipsList = AdvancedChips();
-            int randNum = Random.Range(0, chipsList.Count);
-            return chipsList[randNum].chipInfo.GetID();
+            int randNum = UnityEngine.Random.Range(0, ModdedChips.Count);
+            return ModdedChips[randNum].ChipInfo.GetID();
         }
 
         public static int GetIndexFromList(int id)
         {
-            return ModdedChipsList.FindIndex(mc => mc.chipInfo.GetID() == id);
+            return ModdedChips.FindIndex(mc => mc.ChipInfo.GetID() == id);
         }
 
-        public static ModdedChip GetChipByIndex(int index)
+        public static CombatChip GetChipByIndex(int index)
         {
-            return ModdedChipsList[index];
+            return ModdedChips[index];
         }
 
         public static int IsChipEquipped(int id)
@@ -44,26 +41,25 @@ namespace MoreCombatChips.Services
             }
             else
             {
-                throw new GameScriptCombatChipsNotFoundException();
+                string message = "GameScript.combatChips field not found.";
+                MoreCombatChips.GetLogger().LogError(message);
+                throw new Exception(message);
             }
         }
 
         public static int IsChipEquipped(string keyName)
         {
-            var moddedChip = ModdedChipsList.Find(mc => mc.chipInfo.GetRegistryName() == $"More Combat Chips:{keyName}");
+            var moddedChip = ModdedChips.Find(mc => mc.ChipInfo.GetRegistryName() == $"More Combat Chips:{keyName}");
             if (moddedChip == null)
             {
-                throw new ModdedChipNotFoundException(keyName);
+                string message = $"{keyName} chip not found.";
+                MoreCombatChips.GetLogger().LogError(message);
+                throw new Exception(message);
             }
             else
             {
-                return IsChipEquipped(moddedChip.chipInfo.GetID());
+                return IsChipEquipped(moddedChip.ChipInfo.GetID());
             }
-        }
-
-        private static List<ModdedChip> AdvancedChips()
-        {
-            return ModdedChipsList.FindAll(mc => mc.isAdvanced);
         }
     }
 }

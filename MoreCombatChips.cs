@@ -1,6 +1,5 @@
 using GadgetCore.API;
 using MoreCombatChips.CombatChips;
-using MoreCombatChips.DataStructures;
 using System.Collections.Generic;
 
 namespace MoreCombatChips
@@ -8,32 +7,37 @@ namespace MoreCombatChips
     [Gadget("More Combat Chips", true)]
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
-        public const string MOD_VERSION = "1.4"; // Set this to the version of your mod.
-        public const string CONFIG_VERSION = "0.0"; // Increment this whenever you change your mod's config file.
+        public const string MOD_VERSION = "1.5"; // Set this to the version of your mod.
+        public const string CONFIG_VERSION = "1.5.1"; // Increment this whenever you change your mod's config file.
 
-        public static List<ModdedChip> ModdedChipsList = new List<ModdedChip>();
+        internal static List<CombatChip> ModdedChips = new List<CombatChip>();
+        internal static bool QuadracopterCost = true;
 
         public static void Log(string message)
         {
             GetLogger().Log(message);
         }
 
-        //protected override void LoadConfig()
-        //{
-        //    Config.Load();
+        protected override void LoadConfig()
+        {
+            Config.Load();
 
-        //    string fileVersion = Config.ReadString("ConfigVersion", CONFIG_VERSION, comments: "The Config Version (not to be confused with mod version)");
+            string fileVersion = Config.ReadString("ConfigVersion", CONFIG_VERSION, comments: "The Config Version (not to be confused with mod version)");
 
-        //    if (fileVersion != CONFIG_VERSION)
-        //    {
-        //        Config.Reset();
-        //        Config.WriteString("ConfigVersion", CONFIG_VERSION, comments: "The Config Version (not to be confused with mod version)");
-        //    }
+            if (fileVersion != CONFIG_VERSION)
+            {
+                Config.Reset();
+                Config.WriteString("ConfigVersion", CONFIG_VERSION, comments: "The Config Version (not to be confused with mod version)");
+            }
 
-        //    // Do stuff with `Config`
+            QuadracopterCost = Config.ReadBool(
+                "QuadracopterCost", true,
+                requiresRestart: true,
+                comments: "Changes mana cost to 30."
+            );
 
-        //    Config.Save();
-        //}
+            Config.Save();
+        }
 
         public override string GetModDescription()
         {
@@ -49,20 +53,15 @@ namespace MoreCombatChips
         protected override void Initialize()
         {
             Logger.Log("MoreCombatChips v" + Info.Mod.Version);
-            new AttackerDroneChip().Register();
-            new MessyMkIChip().Register();
-            new VitalityXXChip().Register();
-            new DexterityXXChip().Register();
-            new StrengthXXChip().Register();
-            new IntelligenceXXChip().Register();
-            new TechXXChip().Register();
-            new FaithXXChip().Register();
-            new RejuvenationWaveChip().Register();
-        }
-
-        protected override void Unload()
-        {
-            ModdedChipsList.Clear();
+            CombatChip<AttackerDroneChip>.I.Register();
+            CombatChip<MessyMkIChip>.I.Register();
+            CombatChip<VitalityXXChip>.I.Register();
+            CombatChip<DexterityXXChip>.I.Register();
+            CombatChip<StrengthXXChip>.I.Register();
+            CombatChip<IntelligenceXXChip>.I.Register();
+            CombatChip<TechXXChip>.I.Register();
+            CombatChip<FaithXXChip>.I.Register();
+            CombatChip<RejuvenationWaveChip>.I.Register();
         }
     }
 }

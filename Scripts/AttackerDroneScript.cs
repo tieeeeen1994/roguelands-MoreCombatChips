@@ -50,9 +50,11 @@ namespace MoreCombatChips.Scripts
         private void SetProjectile()
         {
             GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("Au/turret"), volume * .5f);
-            GameObject projUp = (GameObject)Instantiate(Resources.Load("MoreCombatChips/AttackerDroneProjectile"), transform.position, Quaternion.identity);
+            GameObject projUp = (GameObject)Instantiate(Resources.Load("MoreCombatChips/AttackerDroneProjectile"),
+                                                        transform.position, Quaternion.identity);
             projUp.GetComponent<AttackerDroneProjectileScript>().Set(damage, GameScript.MODS[10], xDirection, 1);
-            GameObject projDown = (GameObject)Instantiate(Resources.Load("MoreCombatChips/AttackerDroneProjectile"), transform.position, Quaternion.identity);
+            GameObject projDown = (GameObject)Instantiate(Resources.Load("MoreCombatChips/AttackerDroneProjectile"),
+                                                          transform.position, Quaternion.identity);
             projDown.GetComponent<AttackerDroneProjectileScript>().Set(damage, GameScript.MODS[10], xDirection, -1);
         }
 
@@ -65,7 +67,7 @@ namespace MoreCombatChips.Scripts
         [RPC]
         private void SetSound()
         {
-            GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("Au/turret1"), volume);
+            GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("Au/turret1"), volume * .5f);
         }
     }
 }

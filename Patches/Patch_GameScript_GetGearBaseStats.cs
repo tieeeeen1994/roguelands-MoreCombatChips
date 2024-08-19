@@ -1,5 +1,7 @@
 ﻿using GadgetCore.API;
 using HarmonyLib;
+using MoreCombatChips.ID;
+using MoreCombatChips.Services;
 
 namespace MoreCombatChips.Patches
 {
@@ -14,16 +16,14 @@ namespace MoreCombatChips.Patches
         [HarmonyPrefix]
         public static bool Prefix(int id, ref int[] __result)
         {
-            if (id == 473) // Gadget RPG
+            switch (id)
             {
-                __result = new int[] { 2, 0, 0, 6, 0, 0 };
-                return false;
+                case ItemID.GadgetRPG: // Gadget RPG
+                    __result = StatService.NewStats(VIT: 2, TEC: 6);
+                    return false;
+                default:
+                    return true;
             }
-            else
-            {
-                return true;
-            }
-
         }
     }
 }
