@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace MoreCombatChips.CombatChips
 {
-    public class AttackerDroneChip : BaseChip<AttackerDroneChip>
+    public class AttackerDroneChip : CombatChip
     {
-        public override int Damage => InstanceTracker.GameScript.GetFinalStat((int)StatID.TEC) * 2;
+        public override int Damage => InstanceTracker.GameScript.GetFinalStat(StatID.TEC) * 2;
 
         public override ChipType Type => ChipType.ACTIVE;
 

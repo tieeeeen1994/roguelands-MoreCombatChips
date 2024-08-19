@@ -49,7 +49,7 @@ namespace MoreCombatChips.Patches
         private static void ExtraAugmentEffects()
         {
             MoreCombatChips.Log("Patch_GameScript_UpdateHP: It works!");
-            switch ((AugmentID)Menuu.curAugment)
+            switch (Menuu.curAugment)
             {
                 case AugmentID.RebellionHeadpiece:
                     if (GameScript.maxhp > 75)

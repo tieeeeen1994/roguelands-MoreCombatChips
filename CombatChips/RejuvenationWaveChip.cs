@@ -2,7 +2,7 @@
 
 namespace MoreCombatChips.CombatChips
 {
-    public class RejuvenationWaveChip : BaseChip
+    public class RejuvenationWaveChip : CombatChip
     {
         public override ChipType Type => ChipType.PASSIVE;
 
@@ -11,6 +11,6 @@ namespace MoreCombatChips.CombatChips
         public override string Description =>
             "Healing Ward: Heal +1 HP more per 100 FTH.\n" +
             "Angelic Augur: Heal +1 more HP per 50 FTH.\n" +
-            "This effect is not stackable.";
+            "This chip is not stackable.";
     }
 }

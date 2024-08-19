@@ -2,7 +2,7 @@
 
 namespace MoreCombatChips.CombatChips
 {
-    public class VitalityXXChip : BaseChip
+    public class VitalityXXChip : CombatChip
     {
         public override ChipType Type => ChipType.PASSIVE;
 

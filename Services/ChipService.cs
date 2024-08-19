@@ -1,17 +1,16 @@
-﻿using GadgetCore.API;
+﻿using System;
+using GadgetCore.API;
 using GadgetCore.Util;
 using MoreCombatChips.CombatChips;
-using MoreCombatChips.Exceptions;
-using UnityEngine;
 using static MoreCombatChips.MoreCombatChips;
 
 namespace MoreCombatChips.Services
 {
-    public static class ChipManagementService
+    public static class ChipService
     {
         public static int RandomlyGetIDFromAdvanced()
         {
-            int randNum = Random.Range(0, ModdedChips.Count);
+            int randNum = UnityEngine.Random.Range(0, ModdedChips.Count);
             return ModdedChips[randNum].ChipInfo.GetID();
         }
 
@@ -20,7 +19,7 @@ namespace MoreCombatChips.Services
             return ModdedChips.FindIndex(mc => mc.ChipInfo.GetID() == id);
         }
 
-        public static BaseChip GetChipByIndex(int index)
+        public static CombatChip GetChipByIndex(int index)
         {
             return ModdedChips[index];
         }
@@ -42,7 +41,9 @@ namespace MoreCombatChips.Services
             }
             else
             {
-                throw new GameScriptCombatChipsNotFoundException();
+                string message = "GameScript.combatChips field not found.";
+                MoreCombatChips.GetLogger().LogError(message);
+                throw new Exception(message);
             }
         }
 
@@ -51,7 +52,9 @@ namespace MoreCombatChips.Services
             var moddedChip = ModdedChips.Find(mc => mc.ChipInfo.GetRegistryName() == $"More Combat Chips:{keyName}");
             if (moddedChip == null)
             {
-                throw new ModdedChipNotFoundException(keyName);
+                string message = $"{keyName} chip not found.";
+                MoreCombatChips.GetLogger().LogError(message);
+                throw new Exception(message);
             }
             else
             {

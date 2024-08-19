@@ -1,5 +1,6 @@
 ﻿using GadgetCore.API;
 using HarmonyLib;
+using MoreCombatChips.CombatChips;
 using MoreCombatChips.ID;
 using MoreCombatChips.Services;
 using System;
@@ -33,11 +34,11 @@ namespace MoreCombatChips.Patches
                 null
             );
             var scaledAugur = typeof(Patch_Healward_Set).GetMethod(
-                "ScaledAugur",
+                nameof(ScaledAugur),
                 BindingFlags.NonPublic | BindingFlags.Static
             );
             var scaledHealWard = typeof(Patch_Healward_Set).GetMethod(
-                "ScaledHealWard",
+                nameof(ScaledHealWard),
                 BindingFlags.NonPublic | BindingFlags.Static
             );
             for (int i = 0; i < codes.Count; i++)
@@ -80,7 +81,7 @@ namespace MoreCombatChips.Patches
         {
             MoreCombatChips.Log("Patch_GameScript_UpdateHP: ScaledAugur works!");
             int healPoints = 2;
-            if (ChipManagementService.IsChipEquipped("RejuvenationWaveChip") > 0)
+            if (ChipService.IsChipEquipped("RejuvenationWaveChip") > 0)
             {
                 healPoints += (InstanceTracker.GameScript.GetFinalStat((int)StatID.FTH) / 50);
             }
@@ -91,9 +92,9 @@ namespace MoreCombatChips.Patches
         {
             MoreCombatChips.Log("Patch_GameScript_UpdateHP: ScaledHealWard works!");
             int healPoints = 1;
-            if (ChipManagementService.IsChipEquipped("RejuvenationWaveChip") > 0)
+            if (ChipService.IsChipEquipped(CombatChip<RejuvenationWaveChip>.ID) > 0)
             {
-                healPoints += (InstanceTracker.GameScript.GetFinalStat((int)StatID.FTH) / 100);
+                healPoints += InstanceTracker.GameScript.GetFinalStat(StatID.FTH) / 100;
             }
             return healPoints;
         }

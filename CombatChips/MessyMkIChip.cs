@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace MoreCombatChips.CombatChips
 {
-    public class MessyMkIChip : BaseChip
+    public class MessyMkIChip : CombatChip
     {
         public override int Damage => Mathf.Min(1, InstanceTracker.GameScript.GetFinalStat(3) / 20);
 

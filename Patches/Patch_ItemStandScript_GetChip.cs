@@ -18,10 +18,9 @@ namespace MoreCombatChips.Patches
         {
             if (__instance.isAdvanced)
             {
-                int randNum = Random.Range(0, 100);
-                if (randNum < 5)
+                if (Util.RandomCheck(5))
                 {
-                    __result = ChipManagementService.RandomlyGetIDFromAdvanced();
+                    __result = ChipService.RandomlyGetIDFromAdvanced();
                     MoreCombatChips.Log($"Generating Item Stand with Chip ID {__result}");
                     return false;
                 }

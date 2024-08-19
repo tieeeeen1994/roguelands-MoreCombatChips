@@ -4,13 +4,13 @@ using CI = GadgetCore.API.ChipInfo;
 
 namespace MoreCombatChips.CombatChips
 {
-    public abstract class BaseChip
+    public abstract class CombatChip
     {
         public CI ChipInfo => _chipInfo;
 
         private readonly CI _chipInfo;
 
-        protected BaseChip()
+        protected CombatChip()
         {
             _chipInfo = new CI(Type, Name, Description, Cost, ObjectTexture, Stats, CostType);
         }
@@ -46,12 +46,14 @@ namespace MoreCombatChips.CombatChips
         }
     }
 
-    public abstract class BaseChip<T> : BaseChip where T : BaseChip<T>, new()
+    public static class CombatChip<T> where T : CombatChip, new()
     {
         private static readonly T _instance = new T();
 
         public static T Instance => _instance;
 
         public static T I => Instance;
+
+        public static int ID => Instance.ChipInfo.GetID();
     }
 }

@@ -57,7 +57,7 @@ namespace MoreCombatChips.Scripts
             {
                 float[] array = new float[] { damage, -100f }; // -100f is no knockback
 
-                // We don't want to damage enemies locally, or else there will be a life difference from server and client.
+                // We don't want to damage enemies locally, else there will be a life difference from server and client.
                 // Always follow the server, and only damage in the server.
                 if (Network.isServer)
                 {
