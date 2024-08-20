@@ -1,7 +1,6 @@
 using GadgetCore.API;
 using HarmonyLib;
 using MoreCombatChips.Services;
-using UnityEngine;
 
 namespace MoreCombatChips.Patches
 {

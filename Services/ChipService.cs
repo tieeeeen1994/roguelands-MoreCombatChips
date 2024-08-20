@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using GadgetCore.API;
+﻿using GadgetCore.API;
 using GadgetCore.Util;
 using MoreCombatChips.CombatChips;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MoreCombatChips.Services
 {

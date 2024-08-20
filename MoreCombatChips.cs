@@ -1,6 +1,5 @@
 using GadgetCore.API;
 using MoreCombatChips.CombatChips;
-using System.Collections.Generic;
 
 namespace MoreCombatChips
 {
