@@ -20,6 +20,8 @@ namespace MoreCombatChips.CombatChips
 
         public override ChipInfo.ChipCostType CostType => ChipInfo.ChipCostType.ENERGY;
 
+        public override bool Advanced => true;
+
         protected override void AddRequiredResources()
         {
             new MessyMkIResource().AddResource();

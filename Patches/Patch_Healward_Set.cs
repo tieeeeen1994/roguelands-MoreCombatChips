@@ -53,7 +53,6 @@ namespace MoreCombatChips.Patches
                     codes[i + 3].opcode == OpCodes.Br)
                 {
                     MoreCombatChips.Log("Patch_GameScript_UpdateHP: Inserting ScaledAugur...");
-                    modifiedCodes.Add(new CodeInstruction(OpCodes.Ldarg_0));
                     modifiedCodes.Add(new CodeInstruction(OpCodes.Call, scaledAugur));
                     continue;
                 }
@@ -66,7 +65,6 @@ namespace MoreCombatChips.Patches
                     codes[i + 2].opcode == OpCodes.Callvirt && codes[i + 2].operand == matcherOperand)
                 {
                     MoreCombatChips.Log("Patch_GameScript_UpdateHP: Inserting ScaledHealWard...");
-                    modifiedCodes.Add(new CodeInstruction(OpCodes.Ldarg_0));
                     var instruction = new CodeInstruction(OpCodes.Call, scaledHealWard);
                     instruction.labels.AddRange(codes[i].labels.ToList());
                     modifiedCodes.Add(instruction);
@@ -77,18 +75,18 @@ namespace MoreCombatChips.Patches
             return modifiedCodes;
         }
 
-        private static int ScaledAugur(Healward instance)
+        private static int ScaledAugur()
         {
             MoreCombatChips.Log("Patch_GameScript_UpdateHP: ScaledAugur works!");
             int healPoints = 2;
-            if (ChipService.IsChipEquipped("RejuvenationWaveChip") > 0)
+            if (ChipService.IsChipEquipped(CombatChip<RejuvenationWaveChip>.ID) > 0)
             {
-                healPoints += (InstanceTracker.GameScript.GetFinalStat((int)StatID.FTH) / 50);
+                healPoints += InstanceTracker.GameScript.GetFinalStat(StatID.FTH) / 50;
             }
             return healPoints;
         }
 
-        private static int ScaledHealWard(Healward instance)
+        private static int ScaledHealWard()
         {
             MoreCombatChips.Log("Patch_GameScript_UpdateHP: ScaledHealWard works!");
             int healPoints = 1;

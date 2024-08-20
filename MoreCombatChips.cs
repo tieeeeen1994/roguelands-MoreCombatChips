@@ -10,7 +10,6 @@ namespace MoreCombatChips
         public const string MOD_VERSION = "1.5"; // Set this to the version of your mod.
         public const string CONFIG_VERSION = "1.5.1"; // Increment this whenever you change your mod's config file.
 
-        internal static List<CombatChip> ModdedChips = new List<CombatChip>();
         internal static bool QuadracopterCost = true;
 
         public static void Log(string message)

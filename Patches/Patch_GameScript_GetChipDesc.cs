@@ -5,7 +5,7 @@ using MoreCombatChips.ID;
 namespace MoreCombatChips.Patches
 {
     /// <summary>
-    /// This will modify costs of vanilla Combat Chips.
+    /// This will modify descriptions of vanilla Combat Chips.
     /// </summary>
     [HarmonyPatch(typeof(GameScript))]
     [HarmonyPatch("GetChipDesc")]

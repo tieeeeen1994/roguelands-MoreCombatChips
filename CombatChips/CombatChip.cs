@@ -1,4 +1,6 @@
 ﻿using GadgetCore.API;
+using MoreCombatChips.Services;
+using System;
 using UnityEngine;
 using CI = GadgetCore.API.ChipInfo;
 
@@ -31,18 +33,28 @@ namespace MoreCombatChips.CombatChips
 
         public virtual CI.ChipCostType CostType => CI.ChipCostType.MANA;
 
+        public virtual bool Advanced => false;
+
         protected virtual void Action(int slot) { }
 
         protected virtual void AddRequiredResources() { }
 
         public void Register()
         {
-            _chipInfo.OnUse += Action;
-            _chipInfo.Register(GetType().Name);
-            AddRequiredResources();
-            MoreCombatChips.ModdedChips.Add(this);
-            MoreCombatChips.Log($"Registered Chip: {_chipInfo.Name} with ID {_chipInfo.GetID()}" +
-                                $" as {_chipInfo.GetRegistryName()}");
+            if (ChipService.Register(this))
+            {
+                _chipInfo.OnUse += Action;
+                _chipInfo.Register(GetType().Name);
+                AddRequiredResources();
+                MoreCombatChips.Log($"Registered Chip: {_chipInfo.Name} with ID {_chipInfo.GetID()}" +
+                                    $" as {_chipInfo.GetRegistryName()}");
+            }
+            else
+            {
+                string message = $"{GetType().Name} is already registered. This is not supposed to happen!";
+                MoreCombatChips.GetLogger().LogError(message);
+                throw new Exception(message);
+            }
         }
     }
 

@@ -1,27 +1,43 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using GadgetCore.API;
 using GadgetCore.Util;
 using MoreCombatChips.CombatChips;
-using static MoreCombatChips.MoreCombatChips;
 
 namespace MoreCombatChips.Services
 {
     public static class ChipService
     {
+        private static readonly List<CombatChip> _moddedChips = new List<CombatChip>();
+
+        public static List<CombatChip> ModdedChips => _moddedChips.ToList();
+
+        public static List<CombatChip> AllAdvancedChips => ModdedChips.FindAll(mc => mc.Advanced);
+
+        public static bool Register(CombatChip combatChip)
+        {
+            if (_moddedChips.Exists(mc => mc.ChipInfo.GetRegistryName() == combatChip.ChipInfo.GetRegistryName()))
+            {
+                return false;
+            }
+            else
+            {
+                _moddedChips.Add(combatChip);
+                return true;
+            }
+        }
+
         public static int RandomlyGetIDFromAdvanced()
         {
-            int randNum = UnityEngine.Random.Range(0, ModdedChips.Count);
-            return ModdedChips[randNum].ChipInfo.GetID();
+            var advancedChips = AllAdvancedChips;
+            int randNum = UnityEngine.Random.Range(0, advancedChips.Count);
+            return advancedChips[randNum].ChipInfo.GetID();
         }
 
         public static int GetIndexFromList(int id)
         {
             return ModdedChips.FindIndex(mc => mc.ChipInfo.GetID() == id);
-        }
-
-        public static CombatChip GetChipByIndex(int index)
-        {
-            return ModdedChips[index];
         }
 
         public static int IsChipEquipped(int id)

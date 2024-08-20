@@ -18,6 +18,8 @@ namespace MoreCombatChips.CombatChips
 
         public override int Cost => 20;
 
+        public override bool Advanced => true;
+
         protected override void Action(int slot)
         {
             float cursorPosX = GadgetCoreAPI.GetCursorPos().x;

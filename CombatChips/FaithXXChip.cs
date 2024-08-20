@@ -1,4 +1,5 @@
 ﻿using GadgetCore.API;
+using MoreCombatChips.Services;
 
 namespace MoreCombatChips.CombatChips
 {
@@ -10,6 +11,8 @@ namespace MoreCombatChips.CombatChips
 
         public override string Description => "+24 Faith";
 
-        public override EquipStats Stats => new EquipStats(0, 0, 0, 0, 0, 24);
+        public override EquipStats Stats => StatService.EquipStats(FTH: 24);
+
+        public override bool Advanced => true;
     }
 }
