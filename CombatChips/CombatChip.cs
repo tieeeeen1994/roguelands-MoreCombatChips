@@ -52,7 +52,7 @@ namespace MoreCombatChips.CombatChips
             else
             {
                 string message = $"{GetType().Name} is already registered. This is not supposed to happen!";
-                MoreCombatChips.GetLogger().LogError(message);
+                MoreCombatChips.Error(message);
                 throw new Exception(message);
             }
         }

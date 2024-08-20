@@ -25,6 +25,10 @@ namespace MoreCombatChips.Patches
                     __result = "A mask crafted by the fabric of time and space.\n" +
                                "Upon level up, gain 1 MAG with a 25% chance or 1 FTH with a 75% chance.";
                     break;
+                case AugmentID.EyepodHat:
+                    __result = "A hat made from the remains of an Eyepod. Yikes.\n" +
+                               "On level up, stats gained are double, but equipment are only 50% effective.";
+                    break;
                 default:
                     return true;
             }

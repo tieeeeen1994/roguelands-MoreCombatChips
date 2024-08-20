@@ -58,7 +58,7 @@ namespace MoreCombatChips.Services
             else
             {
                 string message = "GameScript.combatChips field not found.";
-                MoreCombatChips.GetLogger().LogError(message);
+                MoreCombatChips.Error(message);
                 throw new Exception(message);
             }
         }
@@ -69,7 +69,7 @@ namespace MoreCombatChips.Services
             if (moddedChip == null)
             {
                 string message = $"{keyName} chip not found.";
-                MoreCombatChips.GetLogger().LogError(message);
+                MoreCombatChips.Error(message);
                 throw new Exception(message);
             }
             else

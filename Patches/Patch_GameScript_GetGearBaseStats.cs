@@ -18,7 +18,7 @@ namespace MoreCombatChips.Patches
         {
             switch (id)
             {
-                case ItemID.GadgetRPG: // Gadget RPG
+                case ItemID.GadgetRPG:
                     __result = StatService.NewStats(VIT: 2, TEC: 6);
                     return false;
                 default:

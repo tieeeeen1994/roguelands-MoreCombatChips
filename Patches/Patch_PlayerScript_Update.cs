@@ -38,14 +38,11 @@ namespace MoreCombatChips.Patches
                     codes[i + 4].opcode == OpCodes.Ldc_I4_0 &&
                     codes[i + 5].opcode == OpCodes.Stfld && codes[i + 5].operand == speedOperand)
                 {
-                    int limit = i + 5;
-                    for (int j = i; j <= limit; j++)
-                    {
-                        var instruction = new CodeInstruction(OpCodes.Nop);
-                        instruction.labels.AddRange(codes[j].labels);
-                        modifiedCodes.Add(instruction);
-                    }
-                    i = limit;
+                    int next = i + 6;
+                    var instruction = codes[next];
+                    instruction.labels.AddRange(codes[i].labels);
+                    modifiedCodes.Add(instruction);
+                    i = next;
                     continue;
                 }
                 modifiedCodes.Add(codes[i]);
