@@ -10,6 +10,7 @@ namespace MoreCombatChips
         public const string CONFIG_VERSION = "1.5.1"; // Increment this whenever you change your mod's config file.
 
         internal static bool QuadracopterCost = true;
+        internal static bool EyepodHatChange = true;
 
         public static void Log(string message)
         {
@@ -32,6 +33,12 @@ namespace MoreCombatChips
                 "QuadracopterCost", true,
                 requiresRestart: true,
                 comments: "Changes mana cost to 30."
+            );
+
+            EyepodHatChange = Config.ReadBool(
+                "EyepodHatChange", true,
+                requiresRestart: true,
+                comments: "Changes effect of Eyepod Hat."
             );
 
             Config.Save();
