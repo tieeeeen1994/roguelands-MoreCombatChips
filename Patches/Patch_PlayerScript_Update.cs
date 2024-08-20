@@ -18,51 +18,39 @@ namespace MoreCombatChips.Patches
         [HarmonyTranspiler]
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            if (MoreCombatChips.EyepodHatChange)
+            var codes = instructions.ToList();
+            var modifiedCodes = new List<CodeInstruction>();
+            var augmentOperand = typeof(Menuu).GetField(
+                "curAugment",
+                BindingFlags.Static | BindingFlags.Public
+            );
+            var speedOperand = typeof(PlayerScript).GetField(
+                "fspd",
+                BindingFlags.Instance | BindingFlags.NonPublic
+            );
+            for (int i = 0; i < codes.Count; i++)
             {
-                var codes = instructions.ToList();
-                var modifiedCodes = new List<CodeInstruction>();
-                var augmentOperand = typeof(Menuu).GetField(
-                    "curAugment",
-                    BindingFlags.Static | BindingFlags.Public
-                );
-                var speedOperand = typeof(PlayerScript).GetField(
-                    "fspd",
-                    BindingFlags.Instance | BindingFlags.NonPublic
-                );
-                bool startIgnoring = false;
-                int ignoreLimit = -1;
-                for (int i = 0; i < codes.Count; i++)
+                if (MoreCombatChips.EyepodHatChange &&
+                    codes[i].opcode == OpCodes.Ldsfld && codes[i].operand == augmentOperand &&
+                    codes[i + 1].opcode == OpCodes.Ldc_I4_S &&
+                    codes[i + 2].opcode == OpCodes.Bne_Un &&
+                    codes[i + 3].opcode == OpCodes.Ldarg_0 &&
+                    codes[i + 4].opcode == OpCodes.Ldc_I4_0 &&
+                    codes[i + 5].opcode == OpCodes.Stfld && codes[i + 5].operand == speedOperand)
                 {
-                    if (!startIgnoring && ignoreLimit == -1 &&
-                        codes[i].opcode == OpCodes.Ldsfld && codes[i].operand == augmentOperand &&
-                        codes[i + 1].opcode == OpCodes.Ldc_I4_S &&
-                        codes[i + 2].opcode == OpCodes.Bne_Un &&
-                        codes[i + 3].opcode == OpCodes.Ldarg_0 &&
-                        codes[i + 4].opcode == OpCodes.Ldc_I4_0 &&
-                        codes[i + 5].opcode == OpCodes.Stfld && codes[i + 5].operand == speedOperand)
+                    int limit = i + 5;
+                    for (int j = i; j <= limit; j++)
                     {
-                        startIgnoring = true;
-                        ignoreLimit = i + 5;
+                        var instruction = new CodeInstruction(OpCodes.Nop);
+                        instruction.labels.AddRange(codes[j].labels);
+                        modifiedCodes.Add(instruction);
                     }
-                    if (startIgnoring)
-                    {
-                        if (i == ignoreLimit)
-                        {
-                            startIgnoring = false;
-                        }
-                    }
-                    else
-                    {
-                        modifiedCodes.Add(codes[i]);
-                    }
+                    i = limit;
+                    continue;
                 }
-                return modifiedCodes;
+                modifiedCodes.Add(codes[i]);
             }
-            else
-            {
-                return instructions;
-            }
+            return modifiedCodes;
         }
     }
 }
