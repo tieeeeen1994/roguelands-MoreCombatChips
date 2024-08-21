@@ -6,6 +6,9 @@ using System;
 
 namespace MoreCombatChips.Patches
 {
+    /// <summary>
+    /// This will add effects for chips providing stats.
+    /// </summary>
     [HarmonyAfter("GadgetCore.core")]
     [HarmonyPatch(typeof(GameScript))]
     [HarmonyPatch("RefreshChipStats")]

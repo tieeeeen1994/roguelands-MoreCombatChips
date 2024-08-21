@@ -7,15 +7,19 @@ namespace MoreCombatChips
     [Gadget("More Combat Chips", true)]
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
-        public const string MOD_VERSION = "1.6"; // Set this to the version of your mod.
-        public const string CONFIG_VERSION = "1.6.2"; // Increment this whenever you change your mod's config file.
+        public const string MOD_VERSION = "1.7"; // Set this to the version of your mod.
+        public const string CONFIG_VERSION = "1.7.0"; // Increment this whenever you change your mod's config file.
 
         internal static bool QuadracopterCost = true;
         internal static bool EyepodHatChange = true;
+        internal static bool DebugLog = false;
 
         public static void Log(string message)
         {
-            GetLogger().Log(message);
+            if (DebugLog)
+            {
+                GetLogger().Log(message);
+            }
         }
 
         public static void Error(string message)
@@ -40,6 +44,11 @@ namespace MoreCombatChips
                     comments: "The Config Version (not to be confused with mod version)"
                 );
             }
+
+            DebugLog = Config.ReadBool(
+                "DebugLog", false,
+                comments: "Enable debug logging."
+            );
 
             QuadracopterCost = Config.ReadBool(
                 "QuadracopterCost", true,

@@ -9,7 +9,7 @@ using System.Reflection.Emit;
 namespace MoreCombatChips.Patches
 {
     /// <summary>
-    /// This will handle HP constraints for modded effects
+    /// This will handle HP constraints for modded effects.
     /// </summary>
     [HarmonyPatch(typeof(GameScript))]
     [HarmonyPatch("UpdateHP")]

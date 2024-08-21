@@ -29,6 +29,10 @@ namespace MoreCombatChips.Patches
                     __result = "A hat made from the remains of an Eyepod. Yikes.\n" +
                                "On level up, stats gained are double, but equipment are only 50% effective.";
                     break;
+                case AugmentID.GasMask:
+                    __result = "Gray Enigma's standard gas mask to protect the wearer from noxious gases.\n" +
+                               "When using a Combat Chip with insufficent mana, consume Stamina instead.";
+                    break;
                 default:
                     return true;
             }
