@@ -24,7 +24,8 @@ namespace MoreCombatChips.Patches
         }
 
         [HarmonyTranspiler]
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions,
+                                                              ILGenerator ilgenerator)
         {
             var codes = instructions.ToList();
             var modifiedCodes = new List<CodeInstruction>();
@@ -57,6 +58,10 @@ namespace MoreCombatChips.Patches
                         "raceStat",
                         BindingFlags.Static | BindingFlags.Public
                     );
+                    var augmentOperand = typeof(Menuu).GetField(
+                        "curAugment",
+                        BindingFlags.Static | BindingFlags.Public
+                    );
                     if (i >= 12 &&
                         codes[i - 12].opcode == OpCodes.Ldsfld && codes[i - 12].operand == operand &&
                         codes[i - 11].opcode == OpCodes.Ldloc_S &&
@@ -73,10 +78,15 @@ namespace MoreCombatChips.Patches
                         codes[i].opcode == OpCodes.Ldloc_S)
                     {
                         MoreCombatChips.Log("Patch_GameScript_LevelUp2: Add Eyepod Hat Level Up computation (1)");
+                        var skip = ilgenerator.DefineLabel();
+                        modifiedCodes.Add(new CodeInstruction(OpCodes.Ldsfld, augmentOperand));
+                        modifiedCodes.Add(new CodeInstruction(OpCodes.Ldc_I4, AugmentID.EyepodHat));
+                        modifiedCodes.Add(new CodeInstruction(OpCodes.Bne_Un_S, skip));
                         modifiedCodes.Add(new CodeInstruction(OpCodes.Ldloc_S, 6));
                         modifiedCodes.Add(new CodeInstruction(OpCodes.Ldc_I4_2));
                         modifiedCodes.Add(new CodeInstruction(OpCodes.Mul));
                         modifiedCodes.Add(new CodeInstruction(OpCodes.Stloc_S, 6));
+                        modifiedCodes.Add(new CodeInstruction(OpCodes.Nop) { labels = { skip } });
                     }
                     else if (i >= 4 &&
                              codes[i - 4].opcode == OpCodes.Ldloc_S &&
@@ -88,12 +98,17 @@ namespace MoreCombatChips.Patches
                              codes[i + 2].opcode == OpCodes.Ble)
                     {
                         MoreCombatChips.Log("Patch_GameScript_LevelUp2: Add Eyepod Hat Level Up computation (2)");
-                        var instruction = new CodeInstruction(OpCodes.Ldloc_S, 8);
+                        var skip = ilgenerator.DefineLabel();
+                        var instruction = new CodeInstruction(OpCodes.Ldsfld, augmentOperand);
                         instruction.labels.AddRange(codes[i].labels);
                         modifiedCodes.Add(instruction);
+                        modifiedCodes.Add(new CodeInstruction(OpCodes.Ldc_I4, AugmentID.EyepodHat));
+                        modifiedCodes.Add(new CodeInstruction(OpCodes.Bne_Un_S, skip));
+                        modifiedCodes.Add(new CodeInstruction(OpCodes.Ldloc_S, 8));
                         modifiedCodes.Add(new CodeInstruction(OpCodes.Ldc_I4_2));
                         modifiedCodes.Add(new CodeInstruction(OpCodes.Mul));
                         modifiedCodes.Add(new CodeInstruction(OpCodes.Stloc_S, 8));
+                        modifiedCodes.Add(new CodeInstruction(OpCodes.Nop) { labels = { skip } });
                         codes[i].labels.Clear();
                     }
                 }

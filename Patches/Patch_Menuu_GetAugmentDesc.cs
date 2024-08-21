@@ -27,11 +27,16 @@ namespace MoreCombatChips.Patches
                     break;
                 case AugmentID.EyepodHat:
                     __result = "A hat made from the remains of an Eyepod. Yikes.\n" +
-                               "On level up, stats gained are double, but equipment are only 50% effective.";
+                               "On level up, stats gained are double, but equipment is only 50% effective.";
                     break;
                 case AugmentID.GasMask:
                     __result = "Gray Enigma's standard gas mask to protect the wearer from noxious gases.\n" +
                                "When using a Combat Chip with insufficent mana, consume Stamina instead.";
+                    break;
+                case AugmentID.GlibglobHat:
+                    __result = "Beheaded Glibglob, now used as a hat! It is actually quite comfortable.\n" +
+                               "Hallucinations occur when wearing it. Some say it was the Glibglob's memories.\n" +
+                               "Gain 50% more EXP from enemies.";
                     break;
                 default:
                     return true;

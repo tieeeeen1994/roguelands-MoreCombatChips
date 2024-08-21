@@ -1,4 +1,6 @@
-Add a new effect for Eyepod Hat augment. It is functional but I want to UI to be consistent.
+Change Eyepod Hat to only affect equippable items, leaving Combat Chips that give stats untouched.
+Implement a new effect for Gas Mask augment!
+Fix Eyepod Hat bug where stats gained are doubled even when not equipped.
 Description:
 This mod adds a wide array of custom Combat Chips, all available in Old Earth.
 It also applies a few changes and fixes.

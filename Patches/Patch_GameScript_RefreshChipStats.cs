@@ -12,7 +12,7 @@ namespace MoreCombatChips.Patches
     [HarmonyAfter("GadgetCore.core")]
     [HarmonyPatch(typeof(GameScript))]
     [HarmonyPatch("RefreshChipStats")]
-    [HarmonyGadget("More Combat Chips")]
+    [HarmonyGadget("DISABLED: More Combat Chips")]
     public static class Patch_GameScript_RefreshChipStats
     {
         [HarmonyPostfix]
