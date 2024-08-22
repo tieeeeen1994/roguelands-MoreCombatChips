@@ -1,6 +1,7 @@
-using HarmonyLib;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using HarmonyLib;
+using static GadgetCore.Util.TranspilerHelper.CILProcessor;
 
 namespace MoreCombatChips.Services
 {
@@ -22,6 +23,14 @@ namespace MoreCombatChips.Services
                 MoreCombatChips.Log("\nLabels:");
                 PrintLabels(instruction.labels);
             }
+        }
+
+        public static CodeInstruction MoveLabel(this CodeInstruction insn, ILRef ilRef)
+        {
+            var labels = ilRef.GetInsn().labels;
+            insn.labels.AddRange(labels);
+            labels.Clear();
+            return insn;
         }
 
         private static void PrintLabels(List<Label> labels)

@@ -1,8 +1,6 @@
 ﻿using GadgetCore.API;
 using HarmonyLib;
-using MoreCombatChips.ID;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 

@@ -1,8 +1,10 @@
 ﻿using GadgetCore.API;
+using GadgetCore.Util;
 using HarmonyLib;
 using MoreCombatChips.ID;
+using MoreCombatChips.Services;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -16,34 +18,45 @@ namespace MoreCombatChips.Patches
     [HarmonyGadget("More Combat Chips")]
     public static class Patch_GameScript_UpdateHP
     {
-        [HarmonyTranspiler]
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static FieldInfo HPMatcher
         {
-            var codes = new List<CodeInstruction>(instructions);
-            var modifiedCodes = new List<CodeInstruction>();
-            var matcherOperand = typeof(GameScript).GetField("hp", BindingFlags.Public | BindingFlags.Static);
-            var delegateMethod = typeof(Patch_GameScript_UpdateHP).GetMethod(
+            get => typeof(GameScript).GetField("hp", BindingFlags.Public | BindingFlags.Static);
+        }
+
+        private static MethodInfo ExtraAugmentEffectsMethod
+        {
+            get => typeof(Patch_GameScript_UpdateHP).GetMethod(
                 nameof(ExtraAugmentEffects),
                 BindingFlags.Static | BindingFlags.NonPublic
             );
-            for (int i = 0; i < codes.Count; i++)
+        }
+
+        [HarmonyTranspiler]
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
+        {
+            var p = TranspilerHelper.CreateProcessor(insns, il);
+            var ilRef = p.FindRefByInsns(new CodeInstruction[]
             {
-                if (i >= 1 &&
-                    codes[i - 1].opcode == OpCodes.Stsfld && codes[i - 1].operand == matcherOperand &&
-                    codes[i].opcode == OpCodes.Ldsfld && codes[i].operand == matcherOperand &&
-                    codes[i + 1].opcode == OpCodes.Ldc_I4_S &&
-                    codes[i + 2].opcode == OpCodes.Ble)
-                {
-                    MoreCombatChips.Log("Patch_GameScript_UpdateHP: Emit ExtraAugmentEffects");
-                    var labels = codes[i].labels.ToList();
-                    var instruction = new CodeInstruction(OpCodes.Call, delegateMethod);
-                    instruction.labels.AddRange(labels);
-                    modifiedCodes.Add(instruction);
-                    codes[i].labels.Clear();
-                }
-                modifiedCodes.Add(codes[i]);
+                new CodeInstruction(OpCodes.Stsfld, HPMatcher),
+                new CodeInstruction(OpCodes.Ldsfld, HPMatcher),
+                new CodeInstruction(OpCodes.Ldc_I4_S),
+                new CodeInstruction(OpCodes.Ble)
+            });
+            if (ilRef == null)
+            {
+                string message = "Patch_GameScript_UpdateHP: Transpiler could not find any reference point.";
+                MoreCombatChips.Error(message);
+                throw new Exception(message);
             }
-            return modifiedCodes;
+            else
+            {
+                ilRef = ilRef.GetRefByOffset(1);
+                p.InjectInsns(ilRef, new CodeInstruction[]
+                {
+                    new CodeInstruction(OpCodes.Call, ExtraAugmentEffectsMethod).MoveLabel(ilRef)
+                }, insert: true);
+            }
+            return p.Insns;
         }
 
         private static void ExtraAugmentEffects()

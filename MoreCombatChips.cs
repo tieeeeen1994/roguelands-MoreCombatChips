@@ -7,7 +7,7 @@ namespace MoreCombatChips
     [Gadget("More Combat Chips", true)]
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
-        public const string MOD_VERSION = "1.7"; // Set this to the version of your mod.
+        public const string MOD_VERSION = "1.7.1"; // Set this to the version of your mod.
         public const string CONFIG_VERSION = "1.7.1"; // Increment this whenever you change your mod's config file.
 
         internal static bool QuadracopterCost = true;
