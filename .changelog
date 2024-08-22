@@ -1,6 +1,6 @@
-Change Eyepod Hat to only affect equippable items, leaving Combat Chips that give stats untouched.
-Implement a new effect for Gas Mask augment!
-Fix Eyepod Hat bug where stats gained are doubled even when not equipped.
+Thanks to SuperKael for introducing me to TranspilerHelper. Some patches are now written in TranspilerHelper.
+Implement Chamcham hat augment changes.
+
 Description:
 This mod adds a wide array of custom Combat Chips, all available in Old Earth.
 It also applies a few changes and fixes.

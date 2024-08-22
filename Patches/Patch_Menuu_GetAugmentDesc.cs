@@ -38,6 +38,10 @@ namespace MoreCombatChips.Patches
                                "Hallucinations occur when wearing it. Some say it was the Glibglob's memories.\n" +
                                "Gain 50% more EXP from enemies.";
                     break;
+                case AugmentID.ChamchamHat:
+                    __result = "A decorative hat worn during the Aether Festival. No Chamchams were harmed.\n" +
+                               "Gain 3% more chance into crafting higher tiered gear because why not?";
+                    break;
                 default:
                     return true;
             }

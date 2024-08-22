@@ -1,8 +1,8 @@
-﻿using System;
-using System.Reflection;
-using GadgetCore.API;
+﻿using GadgetCore.API;
 using HarmonyLib;
 using MoreCombatChips.ID;
+using System;
+using System.Reflection;
 
 namespace MoreCombatChips.Patches
 {

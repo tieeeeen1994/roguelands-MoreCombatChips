@@ -1,7 +1,6 @@
+using HarmonyLib;
 using System.Collections.Generic;
 using System.Reflection.Emit;
-using HarmonyLib;
-using static GadgetCore.Util.TranspilerHelper.CILProcessor;
 
 namespace MoreCombatChips.Services
 {
@@ -12,7 +11,7 @@ namespace MoreCombatChips.Services
             return UnityEngine.Random.Range(start, probability) < chance;
         }
 
-        public static void PrintInstructions(IEnumerable<CodeInstruction> instructions)
+        public static void PrintInstructions(this IEnumerable<CodeInstruction> instructions)
         {
             int i = 0;
             foreach (var instruction in instructions)
@@ -23,14 +22,6 @@ namespace MoreCombatChips.Services
                 MoreCombatChips.Log("\nLabels:");
                 PrintLabels(instruction.labels);
             }
-        }
-
-        public static CodeInstruction MoveLabel(this CodeInstruction insn, ILRef ilRef)
-        {
-            var labels = ilRef.GetInsn().labels;
-            insn.labels.AddRange(labels);
-            labels.Clear();
-            return insn;
         }
 
         private static void PrintLabels(List<Label> labels)

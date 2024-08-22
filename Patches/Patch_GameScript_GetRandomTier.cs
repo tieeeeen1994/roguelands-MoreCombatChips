@@ -9,21 +9,16 @@ using System.Reflection.Emit;
 namespace MoreCombatChips.Patches
 {
     /// <summary>
-    /// This will handle HP constraints for modded effects.
+    /// This will add modifications when tyring to roll for gear tier.
     /// </summary>
     [HarmonyPatch(typeof(GameScript))]
-    [HarmonyPatch("UpdateHP")]
+    [HarmonyPatch("GetRandomTier")]
     [HarmonyGadget("More Combat Chips")]
-    public static class Patch_GameScript_UpdateHP
+    public static class Patch_GameScript_GetRandomTier
     {
-        private static FieldInfo HPMatcher
-        {
-            get => typeof(GameScript).GetField("hp", BindingFlags.Public | BindingFlags.Static);
-        }
-
         private static MethodInfo ExtraAugmentEffectsMethod
         {
-            get => typeof(Patch_GameScript_UpdateHP).GetMethod(
+            get => typeof(Patch_GameScript_GetRandomTier).GetMethod(
                 nameof(ExtraAugmentEffects),
                 BindingFlags.Static | BindingFlags.NonPublic
             );
@@ -35,40 +30,36 @@ namespace MoreCombatChips.Patches
             var p = TranspilerHelper.CreateProcessor(insns, il);
             var ilRef = p.FindRefByInsns(new CodeInstruction[]
             {
-                new CodeInstruction(OpCodes.Stsfld, HPMatcher),
-                new CodeInstruction(OpCodes.Ldsfld, HPMatcher),
-                new CodeInstruction(OpCodes.Ldc_I4_S),
-                new CodeInstruction(OpCodes.Ble)
+                new CodeInstruction(OpCodes.Ldloc_0),
+                new CodeInstruction(OpCodes.Ldloc_3),
+                new CodeInstruction(OpCodes.Sub),
+                new CodeInstruction(OpCodes.Stloc_0),
+                new CodeInstruction(OpCodes.Ldloc_0)
             });
             if (ilRef == null)
             {
-                MoreCombatChips.Log("Patch_GameScript_UpdateHP: Transpiler could not find any reference point.");
+                MoreCombatChips.Log("Patch_GameScript_GetRandomTier: Transpiler could not find any reference point.");
             }
             else
             {
-                ilRef = ilRef.GetRefByOffset(1);
+                ilRef = ilRef.GetRefByOffset(4);
                 p.InjectInsns(ilRef, new CodeInstruction[]
                 {
+                    new CodeInstruction(OpCodes.Ldloca, 0),
                     new CodeInstruction(OpCodes.Call, ExtraAugmentEffectsMethod)
                 }, insert: true);
             }
             return p.Insns;
         }
 
-        private static void ExtraAugmentEffects()
+        private static void ExtraAugmentEffects(ref int currentRoll)
         {
-            MoreCombatChips.Log("Patch_GameScript_UpdateHP: It works!");
+            MoreCombatChips.Log("Patch_GameScript_GetRandomTier: Trying to modify roll.");
             switch (Menuu.curAugment)
             {
-                case AugmentID.RebellionHeadpiece:
-                    if (GameScript.maxhp > 75)
-                    {
-                        GameScript.maxhp = 75;
-                    }
-                    if (GameScript.hp > 75)
-                    {
-                        GameScript.hp = 75;
-                    }
+                case AugmentID.ChamchamHat:
+                    MoreCombatChips.Log("Patch_GameScript_GetRandomTier: Chamcham Hat found. BE LUCKIER!");
+                    currentRoll -= 3;
                     break;
             }
         }
