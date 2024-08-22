@@ -9,7 +9,7 @@ namespace MoreCombatChips.Scripts
         private Vector3 direction;
         private float attackAngle = 45f;
         private Vector3 attackDirection = Vector3.right;
-        private float speed = 30f;
+        private float speed = 50f;
         private bool isShooting = false;
         private readonly int attackTimes = 50;
         private readonly float attackRate = 0.05f;
@@ -41,7 +41,7 @@ namespace MoreCombatChips.Scripts
                 isShooting = true;
                 StartCoroutine(Shoot());
             }
-            speed = Mathf.Lerp(minSpeed, speed, 0.925f);
+            speed = Mathf.Lerp(minSpeed, speed, 0.95f);
 
             Animate();
         }

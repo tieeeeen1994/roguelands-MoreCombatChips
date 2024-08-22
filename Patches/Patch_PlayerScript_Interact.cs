@@ -35,23 +35,26 @@ namespace MoreCombatChips.Patches
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
         {
             var p = TranspilerHelper.CreateProcessor(insns, il);
-            var ilRef = p.FindRefByInsns(new CodeInstruction[]
+            if (MoreCombatChips.ChamchamHatChange)
             {
-                new CodeInstruction(OpCodes.Ldsfld, CurAugment),
-                new CodeInstruction(OpCodes.Ldc_I4_S, (byte)16),
-                new CodeInstruction(OpCodes.Beq),
-                new CodeInstruction(OpCodes.Ldarg_0),
-                new CodeInstruction(OpCodes.Ldfld),
-                new CodeInstruction(OpCodes.Ldfld),
-                new CodeInstruction(OpCodes.Callvirt, CombatChipMenu)
-            });
-            if (ilRef == null)
-            {
-                MoreCombatChips.Log("Patch_PlayerScript_Interact: Transpiler could not find any reference point.");
-            }
-            else
-            {
-                p.RemoveInsns(ilRef, 3);
+                var ilRef = p.FindRefByInsns(new CodeInstruction[]
+                {
+                    new CodeInstruction(OpCodes.Ldsfld, CurAugment),
+                    new CodeInstruction(OpCodes.Ldc_I4_S, (byte)16),
+                    new CodeInstruction(OpCodes.Beq),
+                    new CodeInstruction(OpCodes.Ldarg_0),
+                    new CodeInstruction(OpCodes.Ldfld),
+                    new CodeInstruction(OpCodes.Ldfld),
+                    new CodeInstruction(OpCodes.Callvirt, CombatChipMenu)
+                });
+                if (ilRef == null)
+                {
+                    MoreCombatChips.Log("Patch_PlayerScript_Interact: Transpiler could not find any reference point.");
+                }
+                else
+                {
+                    p.RemoveInsns(ilRef, 3);
+                }
             }
             return p.Insns;
         }

@@ -12,6 +12,8 @@ namespace MoreCombatChips
 
         internal static bool QuadracopterCost = true;
         internal static bool EyepodHatChange = true;
+        internal static bool GlibglobHatChange = true;
+        internal static bool ChamchamHatChange = true;
         internal static bool DebugLog = false;
 
         public static void Log(string message)
@@ -60,6 +62,18 @@ namespace MoreCombatChips
                 "EyepodHatChange", true,
                 requiresRestart: true,
                 comments: "Changes effect of Eyepod Hat."
+            );
+
+            GlibglobHatChange = Config.ReadBool(
+                "GlibglobHatChange", true,
+                requiresRestart: true,
+                comments: "Changes effect of Glibglob Hat."
+            );
+
+            ChamchamHatChange = Config.ReadBool(
+                "ChamchamHatChange", true,
+                requiresRestart: true,
+                comments: "Changes effect of Chamcham Hat."
             );
 
             Config.Save();

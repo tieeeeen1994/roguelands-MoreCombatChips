@@ -15,9 +15,9 @@ namespace MoreCombatChips.Scripts
         private bool dead = false;
         private float xCurrentSpeed = 10f;
         private float yCurrentSpeed = 0f;
+        private float xRate = -0.05f;
+        private float yRate = 0.3f;
         private readonly float deathTimer = 1.5f;
-        private readonly float xRate = -0.05f;
-        private readonly float yRate = 0.3f;
         private readonly float minXSpeed = .75f;
         private readonly float maxYSpeed = 40f;
 
@@ -33,6 +33,18 @@ namespace MoreCombatChips.Scripts
             yCurrentSpeed *= yDirection;
             UpdatePosition();
             StartCoroutine(Die());
+        }
+
+        public void Eye(int a)
+        {
+            if (!reborn)
+            {
+                damage += a;
+                reborn = true;
+                gameObject.transform.FindChild("atalanta").gameObject.SetActive(true);
+                yRate *= 1.2f;
+                xRate *= .8f;
+            }
         }
 
         private void Update()

@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 namespace MoreCombatChips.Patches
 {
     /// <summary>
-    /// This will handle HP constraints for modded effects.
+    /// This will handle Mana constraints for modded effects.
     /// </summary>
     [HarmonyPatch(typeof(GameScript))]
     [HarmonyPatch("UpdateMana")]
@@ -24,7 +24,8 @@ namespace MoreCombatChips.Patches
             var maxManaOperand = typeof(GameScript).GetField("maxmana", BindingFlags.Public | BindingFlags.Static);
             for (int i = 0; i < codes.Count; i++)
             {
-                if (codes[i].opcode == OpCodes.Ldsfld && codes[i].operand == matcherOperand &&
+                if (MoreCombatChips.GlibglobHatChange &&
+                    codes[i].opcode == OpCodes.Ldsfld && codes[i].operand == matcherOperand &&
                     codes[i + 1].opcode == OpCodes.Ldc_I4_7 &&
                     codes[i + 2].opcode == OpCodes.Bne_Un &&
                     codes[i + 3].opcode == OpCodes.Ldc_I4_0 &&

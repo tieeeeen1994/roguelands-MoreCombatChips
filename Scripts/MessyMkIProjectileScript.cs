@@ -11,8 +11,8 @@ namespace MoreCombatChips.Scripts
         private bool dying = false;
         private bool reborn = false;
         private bool dead = false;
-        private readonly float deathTimer = 0.2f;
-        private readonly float speed = 10f;
+        private float speed = 10f;
+        private readonly float deathTimer = 0.3f;
 
         public void Set(int damage, int rangedMods, Vector3 direction)
         {
@@ -20,6 +20,17 @@ namespace MoreCombatChips.Scripts
             projRange = rangedMods;
             this.direction = direction;
             StartCoroutine(Die());
+        }
+
+        public void Eye(int a)
+        {
+            if (!reborn)
+            {
+                damage += a;
+                reborn = true;
+                gameObject.transform.FindChild("atalanta").gameObject.SetActive(true);
+                speed *= 1.2f;
+            }
         }
 
         private void Update()

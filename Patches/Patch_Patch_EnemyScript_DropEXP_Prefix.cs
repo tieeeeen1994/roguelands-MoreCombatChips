@@ -27,7 +27,10 @@ namespace MoreCombatChips.Patches
             switch (Menuu.curAugment)
             {
                 case AugmentID.GlibglobHat:
-                    __1 = (int)(__1 * 1.5f);
+                    if (MoreCombatChips.GlibglobHatChange)
+                    {
+                        __1 = (int)(__1 * 1.5f);
+                    }
                     break;
             }
             return true;

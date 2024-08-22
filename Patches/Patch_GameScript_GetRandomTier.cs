@@ -28,26 +28,30 @@ namespace MoreCombatChips.Patches
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
         {
             var p = TranspilerHelper.CreateProcessor(insns, il);
-            var ilRef = p.FindRefByInsns(new CodeInstruction[]
+            if (MoreCombatChips.ChamchamHatChange)
             {
-                new CodeInstruction(OpCodes.Ldloc_0),
-                new CodeInstruction(OpCodes.Ldloc_3),
-                new CodeInstruction(OpCodes.Sub),
-                new CodeInstruction(OpCodes.Stloc_0),
-                new CodeInstruction(OpCodes.Ldloc_0)
-            });
-            if (ilRef == null)
-            {
-                MoreCombatChips.Log("Patch_GameScript_GetRandomTier: Transpiler could not find any reference point.");
-            }
-            else
-            {
-                ilRef = ilRef.GetRefByOffset(4);
-                p.InjectInsns(ilRef, new CodeInstruction[]
+                var ilRef = p.FindRefByInsns(new CodeInstruction[]
                 {
+                    new CodeInstruction(OpCodes.Ldloc_0),
+                    new CodeInstruction(OpCodes.Ldloc_3),
+                    new CodeInstruction(OpCodes.Sub),
+                    new CodeInstruction(OpCodes.Stloc_0),
+                    new CodeInstruction(OpCodes.Ldloc_0)
+                });
+                if (ilRef == null)
+                {
+                    string message = "Patch_GameScript_GetRandomTier: Transpiler could not find any reference point.";
+                    MoreCombatChips.Log(message);
+                }
+                else
+                {
+                    ilRef = ilRef.GetRefByOffset(4);
+                    p.InjectInsns(ilRef, new CodeInstruction[]
+                    {
                     new CodeInstruction(OpCodes.Ldloca, 0),
                     new CodeInstruction(OpCodes.Call, ExtraAugmentEffectsMethod)
-                }, insert: true);
+                    }, insert: true);
+                }
             }
             return p.Insns;
         }
