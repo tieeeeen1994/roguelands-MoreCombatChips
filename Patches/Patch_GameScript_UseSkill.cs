@@ -1,4 +1,5 @@
 ﻿using GadgetCore.API;
+using GadgetCore.Util;
 using HarmonyLib;
 using MoreCombatChips.ID;
 using System.Collections.Generic;
@@ -15,51 +16,39 @@ namespace MoreCombatChips.Patches
     [HarmonyGadget("More Combat Chips")]
     public static class Patch_GameScript_UseSkill
     {
-        [HarmonyTranspiler]
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static FieldInfo Mana
         {
-            var codes = new List<CodeInstruction>(instructions);
-            var modifiedCodes = new List<CodeInstruction>();
-            var matcherOperand = typeof(GameScript).GetField("mana", BindingFlags.Public | BindingFlags.Static);
-            var energyOperand = typeof(GameScript).GetField("energy", BindingFlags.Public | BindingFlags.Static);
-            var delegateMethod = typeof(Patch_GameScript_UseSkill).GetMethod(
+            get => typeof(GameScript).GetField("mana", BindingFlags.Public | BindingFlags.Static);
+        }
+
+        private static FieldInfo Energy
+        {
+            get => typeof(GameScript).GetField("energy", BindingFlags.Public | BindingFlags.Static);
+        }
+
+        private static MethodInfo OnManaCheckMethod
+        {
+            get => typeof(Patch_GameScript_UseSkill).GetMethod(
                 nameof(OnManaCheck),
                 BindingFlags.Static | BindingFlags.NonPublic
             );
-            var consumeMethod = typeof(Patch_GameScript_UseSkill).GetMethod(
+        }
+
+        private static MethodInfo OnManaConsumeMethod
+        {
+            get => typeof(Patch_GameScript_UseSkill).GetMethod(
                 nameof(OnManaConsume),
                 BindingFlags.Static | BindingFlags.NonPublic
             );
-            for (int i = 0; i < codes.Count; i++)
-            {
-                if (codes[i].opcode == OpCodes.Ldsfld && codes[i].operand == matcherOperand &&
-                    codes[i + 1].opcode == OpCodes.Ldloc_1 &&
-                    codes[i + 2].opcode == OpCodes.Blt)
-                {
-                    var instruction = new CodeInstruction(OpCodes.Ldloc_1);
-                    instruction.labels.AddRange(codes[i].labels);
-                    modifiedCodes.Add(instruction);
-                    modifiedCodes.Add(new CodeInstruction(OpCodes.Call, delegateMethod));
-                    modifiedCodes.Add(new CodeInstruction(OpCodes.Brfalse, codes[i + 2].operand));
-                    i += 2;
-                    continue;
-                }
-                if (codes[i].opcode == OpCodes.Ldsfld && codes[i].operand == matcherOperand &&
-                    codes[i + 1].opcode == OpCodes.Ldloc_1 &&
-                    codes[i + 2].opcode == OpCodes.Sub &&
-                    codes[i + 3].opcode == OpCodes.Stsfld && codes[i + 3].operand == matcherOperand)
-                {
-                    var instruction = new CodeInstruction(OpCodes.Ldloc_1);
-                    instruction.labels.AddRange(codes[i].labels);
-                    modifiedCodes.Add(instruction);
-                    modifiedCodes.Add(new CodeInstruction(OpCodes.Ldarg_0));
-                    modifiedCodes.Add(new CodeInstruction(OpCodes.Call, consumeMethod));
-                    i += 3;
-                    continue;
-                }
-                modifiedCodes.Add(codes[i]);
-            }
-            return modifiedCodes;
+        }
+
+        [HarmonyTranspiler]
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
+        {
+            var p = TranspilerHelper.CreateProcessor(insns, il);
+            EmitManaCheck(p);
+            EmitManaConsume(p);
+            return p.Insns;
         }
 
         private static bool OnManaCheck(int cost)
@@ -91,6 +80,54 @@ namespace MoreCombatChips.Patches
                 default:
                     GameScript.mana -= cost;
                     break;
+            }
+        }
+
+        private static void EmitManaCheck(TranspilerHelper.CILProcessor p)
+        {
+            var ilRef = p.FindRefByInsns(new CodeInstruction[]
+            {
+                new CodeInstruction(OpCodes.Ldsfld, Mana),
+                new CodeInstruction(OpCodes.Ldloc_1),
+                new CodeInstruction(OpCodes.Blt)
+            });
+            if (ilRef == null)
+            {
+                MoreCombatChips.Log("Patch_GameScript_UseSkill: Reference not found. (EmitManaCheck)");
+            }
+            else
+            {
+                p.InjectInsns(ilRef, new CodeInstruction[]
+                {
+                    new CodeInstruction(OpCodes.Ldloc_1),
+                    new CodeInstruction(OpCodes.Call, OnManaCheckMethod),
+                    new CodeInstruction(OpCodes.Brfalse, ilRef.GetRefByOffset(2).GetInsn().operand)
+                }, insert: false);
+            }
+        }
+
+        private static void EmitManaConsume(TranspilerHelper.CILProcessor p)
+        {
+            var ilRef = p.FindRefByInsns(new CodeInstruction[]
+            {
+                new CodeInstruction(OpCodes.Ldsfld, Mana),
+                new CodeInstruction(OpCodes.Ldloc_1),
+                new CodeInstruction(OpCodes.Sub),
+                new CodeInstruction(OpCodes.Stsfld, Mana)
+            });
+            if (ilRef == null)
+            {
+                MoreCombatChips.Log("Patch_GameScript_UseSkill: Reference not found.");
+            }
+            else
+            {
+                p.InjectInsns(ilRef, new CodeInstruction[]
+                {
+                    new CodeInstruction(OpCodes.Ldloc_1),
+                    new CodeInstruction(OpCodes.Ldarg_0),
+                    new CodeInstruction(OpCodes.Call, OnManaConsumeMethod)
+                }, insert: false);
+                p.RemoveInsn(ilRef + 3);
             }
         }
     }

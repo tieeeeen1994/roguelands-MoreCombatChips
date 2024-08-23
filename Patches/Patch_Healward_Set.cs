@@ -1,4 +1,5 @@
 ﻿using GadgetCore.API;
+using GadgetCore.Util;
 using HarmonyLib;
 using MoreCombatChips.CombatChips;
 using MoreCombatChips.ID;
@@ -21,26 +22,41 @@ namespace MoreCombatChips.Patches
     [HarmonyGadget("More Combat Chips")]
     public static class Patch_Healward_Set
     {
-        [HarmonyTranspiler]
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static MethodInfo SendMessageOperand
         {
-            var codes = new List<CodeInstruction>(instructions);
-            var modifiedCodes = new List<CodeInstruction>();
-            var matcherOperand = typeof(GameObject).GetMethod(
+            get => typeof(GameObject).GetMethod(
                 "SendMessage",
                 BindingFlags.Instance | BindingFlags.Public,
                 null,
                 new Type[] { typeof(string), typeof(object) },
                 null
             );
-            var scaledAugur = typeof(Patch_Healward_Set).GetMethod(
+        }
+
+        private static MethodInfo ScaledAugurMethod
+        {
+            get => typeof(Patch_Healward_Set).GetMethod(
                 nameof(ScaledAugur),
                 BindingFlags.NonPublic | BindingFlags.Static
             );
-            var scaledHealWard = typeof(Patch_Healward_Set).GetMethod(
+        }
+
+        private static MethodInfo ScaledHealWardMethod
+        {
+            get => typeof(Patch_Healward_Set).GetMethod(
                 nameof(ScaledHealWard),
                 BindingFlags.NonPublic | BindingFlags.Static
             );
+        }
+
+        [HarmonyTranspiler]
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
+        {
+            var p = TranspilerHelper.CreateProcessor(insns, il);
+            EmitScaledAugur(p);
+            EmitScaledHealWard(p);
+            var codes = new List<CodeInstruction>(insns);
+            var modifiedCodes = new List<CodeInstruction>();
             for (int i = 0; i < codes.Count; i++)
             {
                 if (i >= 3 &&
@@ -49,11 +65,11 @@ namespace MoreCombatChips.Patches
                     codes[i - 1].opcode == OpCodes.Ldstr &&
                     codes[i].opcode == OpCodes.Ldc_I4_2 &&
                     codes[i + 1].opcode == OpCodes.Box &&
-                    codes[i + 2].opcode == OpCodes.Callvirt && codes[i + 2].operand == matcherOperand &&
+                    codes[i + 2].opcode == OpCodes.Callvirt && codes[i + 2].operand == SendMessageOperand &&
                     codes[i + 3].opcode == OpCodes.Br)
                 {
                     MoreCombatChips.Log("Patch_GameScript_UpdateHP: Inserting ScaledAugur...");
-                    modifiedCodes.Add(new CodeInstruction(OpCodes.Call, scaledAugur));
+                    modifiedCodes.Add(new CodeInstruction(OpCodes.Call, ScaledAugurMethod));
                     continue;
                 }
                 if (i >= 3 &&
@@ -62,10 +78,10 @@ namespace MoreCombatChips.Patches
                     codes[i - 1].opcode == OpCodes.Ldstr &&
                     codes[i].opcode == OpCodes.Ldc_I4_1 &&
                     codes[i + 1].opcode == OpCodes.Box &&
-                    codes[i + 2].opcode == OpCodes.Callvirt && codes[i + 2].operand == matcherOperand)
+                    codes[i + 2].opcode == OpCodes.Callvirt && codes[i + 2].operand == SendMessageOperand)
                 {
                     MoreCombatChips.Log("Patch_GameScript_UpdateHP: Inserting ScaledHealWard...");
-                    var instruction = new CodeInstruction(OpCodes.Call, scaledHealWard);
+                    var instruction = new CodeInstruction(OpCodes.Call, ScaledHealWardMethod);
                     instruction.labels.AddRange(codes[i].labels.ToList());
                     modifiedCodes.Add(instruction);
                     continue;
@@ -95,6 +111,51 @@ namespace MoreCombatChips.Patches
                 healPoints += InstanceTracker.GameScript.GetFinalStat(StatID.FTH) / 100;
             }
             return healPoints;
+        }
+
+        private static void EmitScaledAugur(TranspilerHelper.CILProcessor p)
+        {
+            var ilRef = p.FindRefByInsns(new CodeInstruction[]
+            {
+                new CodeInstruction(OpCodes.Ldarg_0),
+                new CodeInstruction(OpCodes.Ldfld),
+                new CodeInstruction(OpCodes.Ldstr),
+                new CodeInstruction(OpCodes.Ldc_I4_2),
+                new CodeInstruction(OpCodes.Box),
+                new CodeInstruction(OpCodes.Callvirt, SendMessageOperand),
+                new CodeInstruction(OpCodes.Br)
+            });
+            if (ilRef == null)
+            {
+                MoreCombatChips.Log("Patch_Healward_Set: No reference point. (EmitScaledAugur)");
+            }
+            else
+            {
+                ilRef = ilRef.GetRefByOffset(3);
+                p.InjectInsn(ilRef, new CodeInstruction(OpCodes.Call, ScaledAugurMethod), insert: false);
+            }
+        }
+
+        private static void EmitScaledHealWard(TranspilerHelper.CILProcessor p)
+        {
+            var ilRef = p.FindRefByInsns(new CodeInstruction[]
+            {
+                new CodeInstruction(OpCodes.Ldarg_0),
+                new CodeInstruction(OpCodes.Ldfld),
+                new CodeInstruction(OpCodes.Ldstr),
+                new CodeInstruction(OpCodes.Ldc_I4_1),
+                new CodeInstruction(OpCodes.Box),
+                new CodeInstruction(OpCodes.Callvirt, SendMessageOperand)
+            });
+            if (ilRef == null)
+            {
+                MoreCombatChips.Log("Patch_Healward_Set: No reference point.");
+            }
+            else
+            {
+                ilRef = ilRef.GetRefByOffset(3);
+                p.InjectInsn(ilRef, new CodeInstruction(OpCodes.Call, ScaledHealWardMethod), insert: false);
+            }
         }
     }
 }
