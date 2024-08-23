@@ -1,5 +1,7 @@
-Messy Mk. I and Attacker Drone are now affected by Atalanta's Eye.
-Add config options for Glibglob Hat and Chamcham Hat.
+Implement change in effect of Shmoo Hat.
+All Transpilers now use TranspilerHelper.
+Reworked random names to truly become equal chances for each.
+Attacker Drone and Messy Mk. I projectiles are now affected by Atalanta's Eye.
 
 Description:
 This mod adds a wide array of custom Combat Chips, all available in Old Earth.

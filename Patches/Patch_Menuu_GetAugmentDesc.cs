@@ -31,6 +31,7 @@ namespace MoreCombatChips.Patches
                         __result = "A hat made from the remains of an Eyepod. Yikes.\n" +
                                    "On level up, stats gained are double, but equipment is only 50% effective.";
                     }
+                    else goto default;
                     break;
                 case AugmentID.GasMask:
                     __result = "Gray Enigma's standard gas mask to protect the wearer from noxious gases.\n" +
@@ -43,6 +44,7 @@ namespace MoreCombatChips.Patches
                                    "Hallucinations occur when wearing it. Some say it was the Glibglob's memories.\n" +
                                    "Gain 50% more EXP from enemies.";
                     }
+                    else goto default;
                     break;
                 case AugmentID.ChamchamHat:
                     if (MoreCombatChips.ChamchamHatChange)
@@ -50,6 +52,15 @@ namespace MoreCombatChips.Patches
                         __result = "A decorative hat worn during the Aether Festival. No Chamchams were harmed.\n" +
                                    "Gain 3% more chance into crafting higher tiered gear because why not?";
                     }
+                    else goto default;
+                    break;
+                case AugmentID.ShmooHat:
+                    if (MoreCombatChips.ShmooHatChange)
+                    {
+                        __result = "It terrifyingly looks like a real Shmoo. It's not, right?\n" +
+                                   "Monster drops are tripled.";
+                    }
+                    else goto default;
                     break;
                 default:
                     return true;

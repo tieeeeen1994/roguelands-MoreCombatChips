@@ -8,16 +8,23 @@ namespace MoreCombatChips
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
         public const string MOD_VERSION = "1.8"; // Set this to the version of your mod.
-        public const string CONFIG_VERSION = "1.7.1"; // Increment this whenever you change your mod's config file.
+        public const string CONFIG_VERSION = "1.8.0"; // Increment this whenever you change your mod's config file.
+
+        internal static bool TEST = false;
 
         internal static bool QuadracopterCost = true;
         internal static bool EyepodHatChange = true;
         internal static bool GlibglobHatChange = true;
         internal static bool ChamchamHatChange = true;
+        internal static bool ShmooHatChange = true;
         internal static bool DebugLog = false;
 
         public static void Log(string message)
         {
+            if (TEST)
+            {
+                GetLogger().LogConsole(message);
+            }
             if (DebugLog)
             {
                 GetLogger().Log(message);
@@ -74,6 +81,12 @@ namespace MoreCombatChips
                 "ChamchamHatChange", true,
                 requiresRestart: true,
                 comments: "Changes effect of Chamcham Hat."
+            );
+
+            ShmooHatChange = Config.ReadBool(
+                "ShmooHatChange", true,
+                requiresRestart: true,
+                comments: "Changes effect of Shmoo Hat."
             );
 
             Config.Save();
