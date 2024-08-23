@@ -6,7 +6,6 @@ using MoreCombatChips.ID;
 using MoreCombatChips.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using UnityEngine;
@@ -55,40 +54,7 @@ namespace MoreCombatChips.Patches
             var p = TranspilerHelper.CreateProcessor(insns, il);
             EmitScaledAugur(p);
             EmitScaledHealWard(p);
-            var codes = new List<CodeInstruction>(insns);
-            var modifiedCodes = new List<CodeInstruction>();
-            for (int i = 0; i < codes.Count; i++)
-            {
-                if (i >= 3 &&
-                    codes[i - 3].opcode == OpCodes.Ldarg_0 &&
-                    codes[i - 2].opcode == OpCodes.Ldfld &&
-                    codes[i - 1].opcode == OpCodes.Ldstr &&
-                    codes[i].opcode == OpCodes.Ldc_I4_2 &&
-                    codes[i + 1].opcode == OpCodes.Box &&
-                    codes[i + 2].opcode == OpCodes.Callvirt && codes[i + 2].operand == SendMessageOperand &&
-                    codes[i + 3].opcode == OpCodes.Br)
-                {
-                    MoreCombatChips.Log("Patch_GameScript_UpdateHP: Inserting ScaledAugur...");
-                    modifiedCodes.Add(new CodeInstruction(OpCodes.Call, ScaledAugurMethod));
-                    continue;
-                }
-                if (i >= 3 &&
-                    codes[i - 3].opcode == OpCodes.Ldarg_0 &&
-                    codes[i - 2].opcode == OpCodes.Ldfld &&
-                    codes[i - 1].opcode == OpCodes.Ldstr &&
-                    codes[i].opcode == OpCodes.Ldc_I4_1 &&
-                    codes[i + 1].opcode == OpCodes.Box &&
-                    codes[i + 2].opcode == OpCodes.Callvirt && codes[i + 2].operand == SendMessageOperand)
-                {
-                    MoreCombatChips.Log("Patch_GameScript_UpdateHP: Inserting ScaledHealWard...");
-                    var instruction = new CodeInstruction(OpCodes.Call, ScaledHealWardMethod);
-                    instruction.labels.AddRange(codes[i].labels.ToList());
-                    modifiedCodes.Add(instruction);
-                    continue;
-                }
-                modifiedCodes.Add(codes[i]);
-            }
-            return modifiedCodes;
+            return p.Insns;
         }
 
         private static int ScaledAugur()

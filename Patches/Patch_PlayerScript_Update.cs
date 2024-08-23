@@ -1,7 +1,8 @@
 ﻿using GadgetCore.API;
+using GadgetCore.Util;
 using HarmonyLib;
+using MoreCombatChips.ID;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -15,39 +16,44 @@ namespace MoreCombatChips.Patches
     [HarmonyGadget("More Combat Chips")]
     public static class Patch_PlayerScript_Update
     {
-        [HarmonyTranspiler]
-        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        private static FieldInfo CurAugment
         {
-            var codes = instructions.ToList();
-            var modifiedCodes = new List<CodeInstruction>();
-            var augmentOperand = typeof(Menuu).GetField(
-                "curAugment",
-                BindingFlags.Static | BindingFlags.Public
-            );
-            var speedOperand = typeof(PlayerScript).GetField(
-                "fspd",
-                BindingFlags.Instance | BindingFlags.NonPublic
-            );
-            for (int i = 0; i < codes.Count; i++)
+            get => typeof(Menuu).GetField("curAugment", BindingFlags.Static | BindingFlags.Public);
+        }
+
+        private static FieldInfo Fspd
+        {
+            get => typeof(PlayerScript).GetField("fspd", BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+
+        [HarmonyTranspiler]
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
+        {
+            var p = TranspilerHelper.CreateProcessor(insns, il);
+            if (MoreCombatChips.EyepodHatChange)
             {
-                if (MoreCombatChips.EyepodHatChange &&
-                    codes[i].opcode == OpCodes.Ldsfld && codes[i].operand == augmentOperand &&
-                    codes[i + 1].opcode == OpCodes.Ldc_I4_S &&
-                    codes[i + 2].opcode == OpCodes.Bne_Un &&
-                    codes[i + 3].opcode == OpCodes.Ldarg_0 &&
-                    codes[i + 4].opcode == OpCodes.Ldc_I4_0 &&
-                    codes[i + 5].opcode == OpCodes.Stfld && codes[i + 5].operand == speedOperand)
+                var ilRefs = p.FindAllRefsByInsns(new List<CodeInstruction>
                 {
-                    int next = i + 6;
-                    var instruction = codes[next];
-                    instruction.labels.AddRange(codes[i].labels);
-                    modifiedCodes.Add(instruction);
-                    i = next;
-                    continue;
+                    new CodeInstruction(OpCodes.Ldsfld, CurAugment),
+                    new CodeInstruction(OpCodes.Ldc_I4_S, (byte)AugmentID.EyepodHat),
+                    new CodeInstruction(OpCodes.Bne_Un),
+                    new CodeInstruction(OpCodes.Ldarg_0),
+                    new CodeInstruction(OpCodes.Ldc_I4_0),
+                    new CodeInstruction(OpCodes.Stfld, Fspd)
+                });
+                if (ilRefs.Length == 0)
+                {
+                    MoreCombatChips.Log("Patch_PlayerScript_Update: Could not find any reference point.");
                 }
-                modifiedCodes.Add(codes[i]);
+                else
+                {
+                    foreach (var ilRef in ilRefs)
+                    {
+                        p.RemoveInsns(ilRef, 6);
+                    }
+                }
             }
-            return modifiedCodes;
+            return p.Insns;
         }
     }
 }
