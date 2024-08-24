@@ -1,13 +1,12 @@
-Implement change in effect of Shmoo Hat.
-All Transpilers now use TranspilerHelper.
-Reworked random names to truly become equal chances for each.
-Attacker Drone and Messy Mk. I projectiles are now affected by Atalanta's Eye.
+Droids now scale with level, tier and corruption.
+Stats are adjusted since the base stats are overpowered when they scale.
 
 Description:
 This mod adds a wide array of custom Combat Chips, all available in Old Earth.
 It also applies a few changes and fixes.
 - Gadget RPG now increases TEC instead of DEX and FTH.
-- Useless augments now have a useful effect.
+- Useless augments now have a useful effect. (Configurable)
 - Quadracopter is functionally fixed for multiplayer.
 - Quadracopter now only costs 30 MP. (Configurable)
 - Add more random names from franchises for character creation.
+- Droids have adjusted stats and now scale. (Configurable)

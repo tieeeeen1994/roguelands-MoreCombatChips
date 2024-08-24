@@ -20,7 +20,7 @@ namespace MoreCombatChips.Scripts
         private readonly float rotateSpeedBottom = -5f;
 
         [RPC]
-        public virtual void Set(int damage, Vector3 direction)
+        public void Set(int damage, Vector3 direction)
         {
             GetComponent<NetworkView>().RPC("SetSound", RPCMode.All);
             GetComponent<NetworkView>().RPC("SyncFields", RPCMode.AllBuffered, damage, direction);

@@ -10,13 +10,14 @@ namespace MoreCombatChips
         public const string MOD_VERSION = "1.10"; // Set this to the version of your mod.
         public const string CONFIG_VERSION = "1.9.0"; // Increment this whenever you change your mod's config file.
 
-        internal static bool TEST = true;
+        internal static bool TEST = false;
 
         internal static bool QuadracopterCost = true;
         internal static bool EyepodHatChange = true;
         internal static bool GlibglobHatChange = true;
         internal static bool ChamchamHatChange = true;
         internal static bool ShmooHatChange = true;
+        internal static bool DroidsRework = true;
         internal static bool DebugLog = true;
 
         public static void Log(string message)
@@ -62,7 +63,7 @@ namespace MoreCombatChips
             QuadracopterCost = Config.ReadBool(
                 "QuadracopterCost", true,
                 requiresRestart: true,
-                comments: "Changes mana cost to 30."
+                comments: "Changes mana cost of Quadracopter to 30."
             );
 
             EyepodHatChange = Config.ReadBool(
@@ -89,6 +90,12 @@ namespace MoreCombatChips
                 comments: "Changes effect of Shmoo Hat."
             );
 
+            DroidsRework = Config.ReadBool(
+                "DroidsRework", true,
+                requiresRestart: true,
+                comments: "Droids have adjusted stats and now scale."
+            );
+
             Config.Save();
         }
 
@@ -97,10 +104,11 @@ namespace MoreCombatChips
             return "This mod adds a wide array of custom Combat Chips, all available in Old Earth.\n" +
                    "It also applies a few changes and fixes.\n" +
                    "- Gadget RPG now increases TEC instead of DEX and FTH.\n" +
-                   "- Useless augments now have a useful effect.\n" +
+                   "- Useless augments now have a useful effect. (Configurable)\n" +
                    "- Quadracopter is functionally fixed for multiplayer.\n" +
                    "- Quadracopter now only costs 30 MP. (Configurable)\n" +
-                   "- Add more random names from franchises for character creation.";
+                   "- Add more random names from franchises for character creation.\n" +
+                   "- Droids have adjusted stats and now scale. (Configurable)";
         }
 
         protected override void Initialize()
