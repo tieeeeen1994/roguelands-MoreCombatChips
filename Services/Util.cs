@@ -2,7 +2,7 @@ using HarmonyLib;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 
-namespace MoreCombatChips.Services
+namespace TienContentMod.Services
 {
     public static class Util
     {

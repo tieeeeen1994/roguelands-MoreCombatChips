@@ -1,14 +1,21 @@
-Gold Droid's projectiles now deal TEC / 3 damage, with a minimum of damage of 1.
-Change the augment effects of Shroom Hat and Slime Hat.
-Mech City Beanie augment reworked to fully recover instead of just 5 HP.
+Renamed the mod and restructored the code.
+
+This mod was formerly known as "More Combat Chips". In "2.0.0", the update reformed the mod into separating features to respective gadgets powered by Gadget Core.
+The mod isn't anymore just about having more Combat Chips, but also trying to fix some issues and reworking vanilla content. Henceforth, this mod is now called "Tien Content Mod". Please uninstall "More Combat Chips" mod.
 
 Description:
-This mod adds a wide array of custom Combat Chips, all available in Old Earth.
-It also applies a few changes and fixes.
-- Gadget RPG now increases TEC instead of DEX and FTH.
-- Useless augments now have a useful effect. (Configurable)
-- Mech City beanie is buffed to fully recover health and mana when beaming.
+This mod contains 4 gadgets powered by Gadget Core.
+More Combat Chips
+- Adds new Combat Chips.
 - Quadracopter is functionally fixed for multiplayer.
 - Quadracopter now only costs 30 MP. (Configurable)
+Better Augments
+- Mech City Beanie is buffed to fully recover health and mana when beaming.
+- Adds new effects to augments that had no effect.
+- Reworks negative augments to have a positive effect.
+Droids Rework
+- Droids are now affected by level scaling.
+- Due to scaling, the vanilla base stats are too high, so they are adjusted.
+Miscellaneous
+- Gadget RPG now increases TEC instead of DEX and FTH.
 - Add more random names from franchises for character creation.
-- Droids have adjusted stats and now scale. (Configurable)

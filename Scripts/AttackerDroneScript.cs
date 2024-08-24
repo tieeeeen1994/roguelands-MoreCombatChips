@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace MoreCombatChips.Scripts
+namespace TienContentMod.Scripts
 {
     public class AttackerDroneScript : BaseTurretScript
     {
@@ -50,10 +50,10 @@ namespace MoreCombatChips.Scripts
         private void SetProjectile()
         {
             GetComponent<AudioSource>().PlayOneShot((AudioClip)Resources.Load("Au/turret"), volume * .5f);
-            GameObject projUp = (GameObject)Instantiate(Resources.Load("MoreCombatChips/AttackerDroneProjectile"),
+            GameObject projUp = (GameObject)Instantiate(Resources.Load("TienContentMod/AttackerDroneProjectile"),
                                                         transform.position, Quaternion.identity);
             projUp.GetComponent<AttackerDroneProjectileScript>().Set(damage, GameScript.MODS[10], xDirection, 1);
-            GameObject projDown = (GameObject)Instantiate(Resources.Load("MoreCombatChips/AttackerDroneProjectile"),
+            GameObject projDown = (GameObject)Instantiate(Resources.Load("TienContentMod/AttackerDroneProjectile"),
                                                           transform.position, Quaternion.identity);
             projDown.GetComponent<AttackerDroneProjectileScript>().Set(damage, GameScript.MODS[10], xDirection, -1);
         }

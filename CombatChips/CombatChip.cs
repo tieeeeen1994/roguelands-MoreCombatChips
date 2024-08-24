@@ -1,10 +1,10 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.Services;
 using System;
+using TienContentMod.Services;
 using UnityEngine;
 using CI = GadgetCore.API.ChipInfo;
 
-namespace MoreCombatChips.CombatChips
+namespace TienContentMod.CombatChips
 {
     public abstract class CombatChip
     {

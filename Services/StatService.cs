@@ -1,6 +1,6 @@
 using GadgetCore.API;
 
-namespace MoreCombatChips.Services
+namespace TienContentMod.Services
 {
     public static class StatService
     {

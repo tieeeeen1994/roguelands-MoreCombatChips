@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace MoreCombatChips.Scripts
+namespace TienContentMod.Scripts
 {
     public class MessyMkIProjectileScript : MonoBehaviour
     {

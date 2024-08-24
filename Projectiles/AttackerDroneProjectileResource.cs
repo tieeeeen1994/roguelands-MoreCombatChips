@@ -1,8 +1,8 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.Scripts;
+using TienContentMod.Scripts;
 using UnityEngine;
 
-namespace MoreCombatChips.Projectiles
+namespace TienContentMod.Projectiles
 {
     internal class AttackerDroneProjectileResource : BaseProjectileResource
     {
@@ -10,7 +10,7 @@ namespace MoreCombatChips.Projectiles
         {
             gameObject = Object.Instantiate(GadgetCoreAPI.GetSpecialProjectileResource("silversh"));
             AddProjectileBehavior();
-            GadgetCoreAPI.AddCustomResource("MoreCombatChips/AttackerDroneProjectile", gameObject);
+            GadgetCoreAPI.AddCustomResource("TienContentMod/AttackerDroneProjectile", gameObject);
         }
 
         private void AddProjectileBehavior()

@@ -1,8 +1,8 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.Scripts;
+using TienContentMod.Scripts;
 using UnityEngine;
 
-namespace MoreCombatChips.Projectiles
+namespace TienContentMod.Projectiles
 {
     internal class MessyMkIProjectileResource : BaseProjectileResource
     {
@@ -10,7 +10,7 @@ namespace MoreCombatChips.Projectiles
         {
             gameObject = Object.Instantiate(GadgetCoreAPI.GetSpecialProjectileResource("silversh"));
             AddProjectileBehavior();
-            GadgetCoreAPI.AddCustomResource("MoreCombatChips/MessyMkIProjectile", gameObject);
+            GadgetCoreAPI.AddCustomResource("TienContentMod/MessyMkIProjectile", gameObject);
         }
 
         private void AddProjectileBehavior()

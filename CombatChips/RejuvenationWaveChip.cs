@@ -1,6 +1,6 @@
 ﻿using GadgetCore.API;
 
-namespace MoreCombatChips.CombatChips
+namespace TienContentMod.CombatChips
 {
     public class RejuvenationWaveChip : CombatChip
     {

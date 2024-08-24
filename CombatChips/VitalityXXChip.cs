@@ -1,7 +1,7 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.Services;
+using TienContentMod.Services;
 
-namespace MoreCombatChips.CombatChips
+namespace TienContentMod.CombatChips
 {
     public class VitalityXXChip : CombatChip
     {

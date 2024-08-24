@@ -1,9 +1,9 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.Projectiles;
-using MoreCombatChips.Scripts;
+using TienContentMod.Projectiles;
+using TienContentMod.Scripts;
 using UnityEngine;
 
-namespace MoreCombatChips.CombatChips
+namespace TienContentMod.CombatChips
 {
     public class MessyMkIChip : CombatChip
     {
@@ -32,7 +32,7 @@ namespace MoreCombatChips.CombatChips
         {
             Vector3 playerPos = InstanceTracker.PlayerScript.gameObject.transform.position;
             GameObject gameObject =
-                (GameObject)Network.Instantiate(Resources.Load("MoreCombatChips/MessyMkI"),
+                (GameObject)Network.Instantiate(Resources.Load("TienContentMod/MessyMkI"),
                                                 playerPos, Quaternion.identity, 0);
             gameObject.GetComponent<MessyMkIScript>().Set(Damage, ComputeDirection(playerPos));
         }

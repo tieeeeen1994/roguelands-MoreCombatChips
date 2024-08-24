@@ -1,4 +1,4 @@
-﻿namespace MoreCombatChips.ID
+﻿namespace TienContentMod.ID
 {
     public static class StatID
     {

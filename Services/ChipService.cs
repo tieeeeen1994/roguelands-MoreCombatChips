@@ -1,11 +1,11 @@
 ﻿using GadgetCore.API;
 using GadgetCore.Util;
-using MoreCombatChips.CombatChips;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TienContentMod.CombatChips;
 
-namespace MoreCombatChips.Services
+namespace TienContentMod.Services
 {
     public static class ChipService
     {

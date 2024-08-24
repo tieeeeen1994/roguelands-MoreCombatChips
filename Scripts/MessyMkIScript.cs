@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace MoreCombatChips.Scripts
+namespace TienContentMod.Scripts
 {
     public class MessyMkIScript : BaseTurretScript
     {
@@ -74,7 +74,7 @@ namespace MoreCombatChips.Scripts
         private void SpawnProjectile(Vector3 moveTowards)
         {
             GameObject proj =
-                (GameObject)Instantiate(Resources.Load("MoreCombatChips/MessyMkIProjectile"), transform.position,
+                (GameObject)Instantiate(Resources.Load("TienContentMod/MessyMkIProjectile"), transform.position,
                                         Quaternion.identity);
             proj.GetComponent<MessyMkIProjectileScript>().Set(damage, GameScript.MODS[10], moveTowards);
         }

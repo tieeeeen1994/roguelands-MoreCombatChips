@@ -1,10 +1,10 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.ID;
-using MoreCombatChips.Projectiles;
-using MoreCombatChips.Scripts;
+using TienContentMod.ID;
+using TienContentMod.Projectiles;
+using TienContentMod.Scripts;
 using UnityEngine;
 
-namespace MoreCombatChips.CombatChips
+namespace TienContentMod.CombatChips
 {
     public class AttackerDroneChip : CombatChip
     {
@@ -27,7 +27,7 @@ namespace MoreCombatChips.CombatChips
             int xDirection = cursorPosX < playerPos.x ? -1 : 1;
             Vector3 spawnPos = playerPos + new Vector3(2f * xDirection, 0f, 0f);
             GameObject gameObject =
-                (GameObject)Network.Instantiate(Resources.Load("MoreCombatChips/AttackerDrone"),
+                (GameObject)Network.Instantiate(Resources.Load("TienContentMod/AttackerDrone"),
                                                 spawnPos, Quaternion.identity, 0);
             gameObject.GetComponent<AttackerDroneScript>().Set(Damage, xDirection);
         }

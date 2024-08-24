@@ -1,8 +1,8 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.Scripts;
+using TienContentMod.Scripts;
 using UnityEngine;
 
-namespace MoreCombatChips.Projectiles
+namespace TienContentMod.Projectiles
 {
     public class MessyMkIResource : BaseProjectileResource
     {
@@ -11,7 +11,7 @@ namespace MoreCombatChips.Projectiles
             gameObject = Object.Instantiate(GadgetCoreAPI.GetProjectileResource("turret"));
             AddDroneBehavior();
             UpdateTexture();
-            GadgetCoreAPI.AddCustomResource("MoreCombatChips/MessyMkI", gameObject);
+            GadgetCoreAPI.AddCustomResource("TienContentMod/MessyMkI", gameObject);
         }
 
         private void AddDroneBehavior()

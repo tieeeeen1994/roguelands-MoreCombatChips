@@ -1,8 +1,8 @@
 ﻿using GadgetCore.API;
-using MoreCombatChips.Scripts;
+using TienContentMod.Scripts;
 using UnityEngine;
 
-namespace MoreCombatChips.Projectiles
+namespace TienContentMod.Projectiles
 {
     public class AttackerDroneResource : BaseProjectileResource
     {
@@ -11,7 +11,7 @@ namespace MoreCombatChips.Projectiles
             gameObject = Object.Instantiate(GadgetCoreAPI.GetProjectileResource("turret"));
             AddDroneBehavior();
             UpdateTexture();
-            GadgetCoreAPI.AddCustomResource("MoreCombatChips/AttackerDrone", gameObject);
+            GadgetCoreAPI.AddCustomResource("TienContentMod/AttackerDrone", gameObject);
         }
 
         private void AddDroneBehavior()

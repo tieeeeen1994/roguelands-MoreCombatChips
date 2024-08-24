@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MoreCombatChips.Scripts
+namespace TienContentMod.Scripts
 {
     public abstract class BaseScript : MonoBehaviour
     {

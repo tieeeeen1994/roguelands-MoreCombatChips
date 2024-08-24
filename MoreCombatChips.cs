@@ -1,25 +1,17 @@
 using GadgetCore.API;
-using MoreCombatChips.CombatChips;
-using MoreCombatChips.ID;
+using TienContentMod.CombatChips;
+using static TienContentMod.TienContentMod;
 
-namespace MoreCombatChips
+namespace TienContentMod
 {
-    [Gadget("More Combat Chips", true)]
+    [Gadget(GADGET_NAME, true)]
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
-        public const string MOD_VERSION = "1.11.0"; // Set this to the version of your mod.
-        public const string CONFIG_VERSION = "1.11.0"; // Increment this whenever you change your mod's config file.
-
-        internal static bool TEST = false;
+        public const string GADGET_NAME = "More Combat Chips";
+        public const string CONFIG_VERSION = "2.0.0"; // Increment this whenever you change your mod's config file.
 
         internal static bool QuadracopterCost = true;
-        internal static bool EyepodHatChange = true;
-        internal static bool GlibglobHatChange = true;
-        internal static bool ChamchamHatChange = true;
-        internal static bool ShmooHatChange = true;
-        internal static bool ShroomHatChange = true;
-        internal static bool SlimeHatChange = true;
-        internal static bool DroidsRework = true;
+
         internal static bool DebugLog = true;
 
         public static void Log(string message)
@@ -68,67 +60,17 @@ namespace MoreCombatChips
                 comments: "Changes mana cost of Quadracopter to 30."
             );
 
-            EyepodHatChange = Config.ReadBool(
-                "EyepodHat", true,
-                requiresRestart: true,
-                comments: "Changes effect of Eyepod Hat."
-            );
-
-            GlibglobHatChange = Config.ReadBool(
-                "GlibglobHat", true,
-                requiresRestart: true,
-                comments: "Changes effect of Glibglob Hat."
-            );
-
-            ChamchamHatChange = Config.ReadBool(
-                "ChamchamHat", true,
-                requiresRestart: true,
-                comments: "Changes effect of Chamcham Hat."
-            );
-
-            ShmooHatChange = Config.ReadBool(
-                "ShmooHat", true,
-                requiresRestart: true,
-                comments: "Changes effect of Shmoo Hat."
-            );
-
-            ShroomHatChange = Config.ReadBool(
-                "ShroomHat", true,
-                requiresRestart: true,
-                comments: "Changes effect of Shroom Hat."
-            );
-
-            SlimeHatChange = Config.ReadBool(
-                "SlimeHat", true,
-                requiresRestart: true,
-                comments: "Changes effect of Slime Hat."
-            );
-
-            DroidsRework = Config.ReadBool(
-                "DroidsRework", true,
-                requiresRestart: true,
-                comments: "Droids have adjusted stats and now scale."
-            );
-
             Config.Save();
         }
 
         public override string GetModDescription()
         {
-            return "This mod adds a wide array of custom Combat Chips, all available in Old Earth.\n" +
-                   "It also applies a few changes and fixes.\n" +
-                   "- Gadget RPG now increases TEC instead of DEX and FTH.\n" +
-                   "- Useless augments now have a useful effect. (Configurable)\n" +
-                   "- Mech City beanie is buffed to fully recover health and mana when beaming.\n" +
-                   "- Quadracopter is functionally fixed for multiplayer.\n" +
-                   "- Quadracopter now only costs 30 MP. (Configurable)\n" +
-                   "- Add more random names from franchises for character creation.\n" +
-                   "- Droids have adjusted stats and now scale. (Configurable)";
+            return "WIP";
         }
 
         protected override void Initialize()
         {
-            Logger.Log("MoreCombatChips v" + Info.Mod.Version);
+            Logger.Log($"{GADGET_NAME} v{Info.Mod.Version}");
             CombatChip<AttackerDroneChip>.I.Register();
             CombatChip<MessyMkIChip>.I.Register();
             CombatChip<VitalityXXChip>.I.Register();
@@ -138,22 +80,6 @@ namespace MoreCombatChips
             CombatChip<TechXXChip>.I.Register();
             CombatChip<FaithXXChip>.I.Register();
             CombatChip<RejuvenationWaveChip>.I.Register();
-            GadgetCoreAPI.RegisterStatModifier(AugmentModifiers, StatModifierType.FinalExpMult);
-        }
-
-        private EquipStatsDouble AugmentModifiers(Item _)
-        {
-            var equipStats = EquipStatsDouble.ONE;
-            switch (Menuu.curAugment)
-            {
-                case AugmentID.EyepodHat:
-                    if (EyepodHatChange)
-                    {
-                        equipStats = new EquipStatsDouble(0.5);
-                    }
-                    break;
-            }
-            return equipStats;
         }
     }
 }

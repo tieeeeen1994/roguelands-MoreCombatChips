@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-namespace MoreCombatChips.Projectiles
+namespace TienContentMod.Projectiles
 {
     public abstract class BaseProjectileResource
     {
