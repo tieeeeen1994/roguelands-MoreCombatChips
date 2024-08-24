@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
 using TienContentMod.CombatChips;
+using TienContentMod.Gadgets;
 using TienContentMod.ID;
 using TienContentMod.Services;
 using UnityEngine;

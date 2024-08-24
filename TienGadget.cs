@@ -3,11 +3,11 @@ using static TienContentMod.TienContentMod;
 
 namespace TienContentMod
 {
-    [Gadget(GADGET_NAME, true)]
-    public class Miscellaneous : Gadget<Miscellaneous>
+    public abstract class TienGadget<T> : Gadget<T> where T : TienGadget<T>
     {
-        public const string GADGET_NAME = "Miscellaneous";
-        public const string CONFIG_VERSION = "1.0.0"; // Increment this whenever you change your mod's config file.
+        public abstract string ConfigVersion { get; }
+        protected abstract string GadgetDescription { get; }
+        protected virtual void GadgetConfig() { }
 
         internal static bool DebugLog = true;
 
@@ -28,20 +28,20 @@ namespace TienContentMod
             GetLogger().LogError(message);
         }
 
-        protected override void LoadConfig()
+        protected override sealed void LoadConfig()
         {
             Config.Load();
 
             string fileVersion = Config.ReadString(
-                "ConfigVersion", CONFIG_VERSION,
+                "ConfigVersion", ConfigVersion,
                 comments: "The Config Version (not to be confused with mod version)"
             );
 
-            if (fileVersion != CONFIG_VERSION)
+            if (fileVersion != ConfigVersion)
             {
                 Config.Reset();
                 Config.WriteString(
-                    "ConfigVersion", CONFIG_VERSION,
+                    "ConfigVersion", ConfigVersion,
                     comments: "The Config Version (not to be confused with mod version)"
                 );
             }
@@ -51,17 +51,11 @@ namespace TienContentMod
                 comments: "Enable debug logging."
             );
 
+            GadgetConfig();
+
             Config.Save();
         }
 
-        public override string GetModDescription()
-        {
-            return "WIP";
-        }
-
-        protected override void Initialize()
-        {
-            Logger.Log($"{GADGET_NAME} v{Info.Mod.Version}");
-        }
+        public override sealed string GetModDescription() => GadgetDescription;
     }
 }

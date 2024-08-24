@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TienContentMod.CombatChips;
+using TienContentMod.Gadgets;
 
 namespace TienContentMod.Services
 {

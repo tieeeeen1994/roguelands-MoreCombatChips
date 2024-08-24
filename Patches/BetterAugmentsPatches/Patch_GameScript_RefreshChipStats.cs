@@ -2,6 +2,7 @@
 using GadgetCore.Util;
 using HarmonyLib;
 using System;
+using TienContentMod.Gadgets;
 using TienContentMod.ID;
 
 namespace TienContentMod.Patches.BetterAugmentsPatches

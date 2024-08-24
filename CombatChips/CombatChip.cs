@@ -1,5 +1,6 @@
 ﻿using GadgetCore.API;
 using System;
+using TienContentMod.Gadgets;
 using TienContentMod.Services;
 using UnityEngine;
 using CI = GadgetCore.API.ChipInfo;

@@ -1,5 +1,6 @@
 ﻿using GadgetCore.API;
 using HarmonyLib;
+using TienContentMod.Gadgets;
 using TienContentMod.ID;
 
 namespace TienContentMod.Patches.MoreCombatChipsPatches
