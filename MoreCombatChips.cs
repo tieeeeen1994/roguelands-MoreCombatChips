@@ -8,7 +8,7 @@ namespace MoreCombatChips
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
         public const string MOD_VERSION = "1.10"; // Set this to the version of your mod.
-        public const string CONFIG_VERSION = "1.9.0"; // Increment this whenever you change your mod's config file.
+        public const string CONFIG_VERSION = "1.10.0"; // Increment this whenever you change your mod's config file.
 
         internal static bool TEST = false;
 
@@ -61,31 +61,31 @@ namespace MoreCombatChips
             );
 
             QuadracopterCost = Config.ReadBool(
-                "QuadracopterCost", true,
+                "CopterCost", true,
                 requiresRestart: true,
                 comments: "Changes mana cost of Quadracopter to 30."
             );
 
             EyepodHatChange = Config.ReadBool(
-                "EyepodHatChange", true,
+                "EyepodHat", true,
                 requiresRestart: true,
                 comments: "Changes effect of Eyepod Hat."
             );
 
             GlibglobHatChange = Config.ReadBool(
-                "GlibglobHatChange", true,
+                "GlibglobHat", true,
                 requiresRestart: true,
                 comments: "Changes effect of Glibglob Hat."
             );
 
             ChamchamHatChange = Config.ReadBool(
-                "ChamchamHatChange", true,
+                "ChamchamHat", true,
                 requiresRestart: true,
                 comments: "Changes effect of Chamcham Hat."
             );
 
             ShmooHatChange = Config.ReadBool(
-                "ShmooHatChange", true,
+                "ShmooHat", true,
                 requiresRestart: true,
                 comments: "Changes effect of Shmoo Hat."
             );
