@@ -15,7 +15,10 @@ namespace MoreCombatChips.Patches
             switch (Menuu.curAugment)
             {
                 case AugmentID.SlimeHat:
-                    a[1] *= 2;
+                    if (MoreCombatChips.SlimeHatChange)
+                    {
+                        a[1] *= 2;
+                    }
                     break;
             }
             return true;
