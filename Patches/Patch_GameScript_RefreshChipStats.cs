@@ -12,9 +12,11 @@ namespace MoreCombatChips.Patches
     [HarmonyAfter("GadgetCore.core")]
     [HarmonyPatch(typeof(GameScript))]
     [HarmonyPatch("RefreshChipStats")]
-    [HarmonyGadget("DISABLED: More Combat Chips")]
+    [HarmonyGadget("More Combat Chips")]
     public static class Patch_GameScript_RefreshChipStats
     {
+        private const bool DISABLED = false;
+
         [HarmonyPostfix]
         public static void Postfix(GameScript __instance)
         {
@@ -23,16 +25,25 @@ namespace MoreCombatChips.Patches
                 switch (Menuu.curAugment)
                 {
                     case AugmentID.EyepodHat:
-                        if (MoreCombatChips.EyepodHatChange)
+                        if (DISABLED && MoreCombatChips.EyepodHatChange)
                         {
                             for (int i = 0; i < chipStats.Length; i++)
                             {
                                 chipStats[i] /= 2;
                             }
-                            __instance.SetFieldValue("CHIPSTAT", chipStats);
+                        }
+                        break;
+                    case AugmentID.ShroomHat:
+                        if (MoreCombatChips.ShroomHatChange)
+                        {
+                            for (int i = 0; i < chipStats.Length; i++)
+                            {
+                                chipStats[i] *= 2;
+                            }
                         }
                         break;
                 }
+                __instance.SetFieldValue("CHIPSTAT", chipStats);
             }
             else
             {

@@ -17,6 +17,7 @@ namespace MoreCombatChips
         internal static bool GlibglobHatChange = true;
         internal static bool ChamchamHatChange = true;
         internal static bool ShmooHatChange = true;
+        internal static bool ShroomHatChange = true;
         internal static bool DroidsRework = true;
         internal static bool DebugLog = true;
 
@@ -88,6 +89,12 @@ namespace MoreCombatChips
                 "ShmooHat", true,
                 requiresRestart: true,
                 comments: "Changes effect of Shmoo Hat."
+            );
+
+            ShroomHatChange = Config.ReadBool(
+                "ShroomHat", true,
+                requiresRestart: true,
+                comments: "Changes effect of Shroom Hat."
             );
 
             DroidsRework = Config.ReadBool(

@@ -62,6 +62,15 @@ namespace MoreCombatChips.Patches
                         return false;
                     }
                     goto default;
+                case AugmentID.ShroomHat:
+                    if (MoreCombatChips.ShroomHatChange)
+                    {
+                        __result = "Peeled off the cap of a mushroom, only to find out it is an actual hat!\n" +
+                                   "Quite a pungent smell.\n" +
+                                   "Combat Chips provide twice the effect when enhancing stats.";
+                        return false;
+                    }
+                    goto default;
                 default:
                     return true;
             }
