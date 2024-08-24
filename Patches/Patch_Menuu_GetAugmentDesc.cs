@@ -71,6 +71,18 @@ namespace MoreCombatChips.Patches
                         return false;
                     }
                     goto default;
+                case AugmentID.SlimeHat:
+                    if (MoreCombatChips.SlimeHatChange)
+                    {
+                        __result = "A hat made from a Slime. It's squishy. You look awesome.\n" +
+                                   "Gain double EXP from the Gear Chalice.";
+                        return false;
+                    }
+                    goto default;
+                case AugmentID.MechCityBeanie:
+                    __result = "Mech City is all about the fashion, and this is what the cool kids are wearing.\n" +
+                               "Beaming to and from planets will fully recover your health and mana.";
+                    return false;
                 default:
                     return true;
             }

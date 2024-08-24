@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Reflection;
-using System.Reflection.Emit;
 using GadgetCore.API;
 using GadgetCore.Util;
 using HarmonyLib;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Reflection.Emit;
 
 namespace MoreCombatChips.Patches
 {

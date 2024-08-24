@@ -7,10 +7,10 @@ namespace MoreCombatChips
     [Gadget("More Combat Chips", true)]
     public class MoreCombatChips : Gadget<MoreCombatChips>
     {
-        public const string MOD_VERSION = "1.10.2"; // Set this to the version of your mod.
-        public const string CONFIG_VERSION = "1.10.0"; // Increment this whenever you change your mod's config file.
+        public const string MOD_VERSION = "1.11.0"; // Set this to the version of your mod.
+        public const string CONFIG_VERSION = "1.11.0"; // Increment this whenever you change your mod's config file.
 
-        internal static bool TEST = true;
+        internal static bool TEST = false;
 
         internal static bool QuadracopterCost = true;
         internal static bool EyepodHatChange = true;
@@ -18,6 +18,7 @@ namespace MoreCombatChips
         internal static bool ChamchamHatChange = true;
         internal static bool ShmooHatChange = true;
         internal static bool ShroomHatChange = true;
+        internal static bool SlimeHatChange = true;
         internal static bool DroidsRework = true;
         internal static bool DebugLog = true;
 
@@ -97,6 +98,12 @@ namespace MoreCombatChips
                 comments: "Changes effect of Shroom Hat."
             );
 
+            SlimeHatChange = Config.ReadBool(
+                "SlimeHat", true,
+                requiresRestart: true,
+                comments: "Changes effect of Slime Hat."
+            );
+
             DroidsRework = Config.ReadBool(
                 "DroidsRework", true,
                 requiresRestart: true,
@@ -112,6 +119,7 @@ namespace MoreCombatChips
                    "It also applies a few changes and fixes.\n" +
                    "- Gadget RPG now increases TEC instead of DEX and FTH.\n" +
                    "- Useless augments now have a useful effect. (Configurable)\n" +
+                   "- Mech City beanie is buffed to fully recover health and mana when beaming.\n" +
                    "- Quadracopter is functionally fixed for multiplayer.\n" +
                    "- Quadracopter now only costs 30 MP. (Configurable)\n" +
                    "- Add more random names from franchises for character creation.\n" +
