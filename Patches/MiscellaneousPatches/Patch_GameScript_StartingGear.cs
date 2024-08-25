@@ -1,7 +1,6 @@
 ﻿using GadgetCore.API;
 using HarmonyLib;
 using TienContentMod.Gadgets;
-using TienContentMod.ID;
 using TienContentMod.Services;
 
 namespace TienContentMod.Patches.MiscellaneousPatches
