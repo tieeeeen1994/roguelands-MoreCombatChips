@@ -8,7 +8,7 @@ namespace TienContentMod.Gadgets
     {
         public const string GADGET_NAME = "More Combat Chips";
 
-        public override string ConfigVersion => "2.0.0";
+        public override string ConfigVersion => "2.1.0";
 
         protected override string GadgetDescription =>
             "- Adds new Combat Chips.\n" +

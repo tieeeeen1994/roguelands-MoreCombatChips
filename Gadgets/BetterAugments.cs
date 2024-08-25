@@ -8,7 +8,7 @@ namespace TienContentMod.Gadgets
     {
         public const string GADGET_NAME = "Better Augments";
 
-        public override string ConfigVersion => "2.0.0";
+        public override string ConfigVersion => "2.1.0";
 
         protected override string GadgetDescription =>
             "- Mech City Beanie is buffed to fully recover health and mana when beaming.\n" +

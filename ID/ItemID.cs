@@ -4,6 +4,12 @@ namespace TienContentMod.ID
     {
         public const int TastyHerb = 11;
         public const int MonsterClaw = 22;
+        public const int Aetherblade = 300;
+        public const int Aetherlance = 350;
+        public const int AethergunMkIV = 400;
+        public const int Aethercannon = 450;
+        public const int MageGauntlet = 500;
+        public const int Aetherstaff = 550;
         public const int GadgetRPG = 473;
         public const int RCK22 = 1000;
         public const int FLWR08 = 1001;

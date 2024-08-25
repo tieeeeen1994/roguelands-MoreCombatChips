@@ -9,7 +9,7 @@ namespace TienContentMod
         protected abstract string GadgetDescription { get; }
         protected virtual void GadgetConfig() { }
 
-        internal static bool DebugLog = true;
+        internal static bool DebugLog = false;
 
         public static void Log(string message)
         {

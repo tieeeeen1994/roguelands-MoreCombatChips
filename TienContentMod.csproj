@@ -152,4 +152,7 @@
       <EmbedInteropTypes>false</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\CombatChips\" />
+  </ItemGroup>
 </Project>

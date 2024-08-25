@@ -1,4 +1,5 @@
 ﻿using GadgetCore.API;
+using TienContentMod.Items;
 
 namespace TienContentMod.Gadgets
 {
@@ -7,7 +8,7 @@ namespace TienContentMod.Gadgets
     {
         public const string GADGET_NAME = "Miscellaneous";
 
-        public override string ConfigVersion => "2.0.0";
+        public override string ConfigVersion => "2.1.0";
 
         protected override string GadgetDescription =>
             "- Gadget RPG now increases TEC instead of DEX and FTH.\n" +
@@ -16,6 +17,7 @@ namespace TienContentMod.Gadgets
         protected override void Initialize()
         {
             Logger.Log($"{GADGET_NAME} v{Info.Mod.Version}");
+            Item<SCRP02>.I.Register();
         }
     }
 }

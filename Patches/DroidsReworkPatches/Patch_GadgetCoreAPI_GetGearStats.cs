@@ -37,26 +37,20 @@ namespace TienContentMod.Patches.DroidsReworkPatches
 
         private static void IncludeDroidsComputation(ref bool itemLevels, ItemInfo itemInfo)
         {
-            itemLevels = (itemInfo?.Type & ItemType.LEVELING) == ItemType.LEVELING;
+            itemLevels = (itemInfo.Type & ItemType.LEVELING) == ItemType.LEVELING;
         }
 
         private static void EmitModifiedCheck1st(TranspilerHelper.CILProcessor p)
         {
             var ilRef = p.FindRefByInsns(new CodeInstruction[]
             {
-                new CodeInstruction(OpCodes.Ldloc_0),
-                new CodeInstruction(OpCodes.Brfalse_S),
-                new CodeInstruction(OpCodes.Ldloc_0),
+                new CodeInstruction(OpCodes.Ldloc_1),
                 new CodeInstruction(OpCodes.Ldfld, ItemInfoType),
                 new CodeInstruction(OpCodes.Ldc_I4_S, (byte)64),
                 new CodeInstruction(OpCodes.And),
                 new CodeInstruction(OpCodes.Ldc_I4_S, (byte)64),
                 new CodeInstruction(OpCodes.Bne_Un_S),
-                new CodeInstruction(OpCodes.Ldloc_0),
-                new CodeInstruction(OpCodes.Brtrue_S),
-                new CodeInstruction(OpCodes.Ldc_I4_1),
-                new CodeInstruction(OpCodes.Br_S),
-                new CodeInstruction(OpCodes.Ldloc_0),
+                new CodeInstruction(OpCodes.Ldloc_1),
                 new CodeInstruction(OpCodes.Ldfld, ItemInfoType),
                 new CodeInstruction(OpCodes.Ldc_I4_S, (byte)31),
                 new CodeInstruction(OpCodes.And),
@@ -66,7 +60,7 @@ namespace TienContentMod.Patches.DroidsReworkPatches
                 new CodeInstruction(OpCodes.Ceq),
                 new CodeInstruction(OpCodes.Br_S),
                 new CodeInstruction(OpCodes.Ldc_I4_0),
-                new CodeInstruction(OpCodes.Stloc_1)
+                new CodeInstruction(OpCodes.Stloc_2)
             });
             if (ilRef == null)
                 DroidsRework.Log("Patch_GadgetCoreAPI_GetGearStats: References not found. (EmitModifiedCheck1st)");
@@ -74,11 +68,11 @@ namespace TienContentMod.Patches.DroidsReworkPatches
             {
                 ilRef = p.InjectInsns(ilRef, new CodeInstruction[]
                 {
-                    new CodeInstruction(OpCodes.Ldloca_S, 1),
-                    new CodeInstruction(OpCodes.Ldloc_0),
+                    new CodeInstruction(OpCodes.Ldloca_S, 2),
+                    new CodeInstruction(OpCodes.Ldloc_1),
                     new CodeInstruction(OpCodes.Call, IncludeDroidsComputationMethod),
                 }, insert: true);
-                p.RemoveInsns(ilRef + 3, 23);
+                p.RemoveInsns(ilRef + 3, 17);
             }
         }
 
@@ -86,25 +80,18 @@ namespace TienContentMod.Patches.DroidsReworkPatches
         {
             var ilRef = p.FindRefByInsns(new CodeInstruction[]
             {
-                new CodeInstruction(OpCodes.Ldloc_0),
-                new CodeInstruction(OpCodes.Brtrue_S),
-                new CodeInstruction(OpCodes.Ldc_I4_1),
-                new CodeInstruction(OpCodes.Br_S),
-                new CodeInstruction(OpCodes.Ldloc_0),
+                new CodeInstruction(OpCodes.Ldloc_1),
                 new CodeInstruction(OpCodes.Ldfld, ItemInfoType),
                 new CodeInstruction(OpCodes.Ldc_I4_S, (byte)31),
                 new CodeInstruction(OpCodes.And),
                 new CodeInstruction(OpCodes.Ldc_I4_S, (byte)21),
-                new CodeInstruction(OpCodes.Ceq),
-                new CodeInstruction(OpCodes.Ldc_I4_0),
-                new CodeInstruction(OpCodes.Ceq),
-                new CodeInstruction(OpCodes.Brfalse_S)
+                new CodeInstruction(OpCodes.Beq_S),
             });
             if (ilRef == null)
                 DroidsRework.Log("Patch_GadgetCoreAPI_GetGearStats: References not found. (EmitModifiedCheck2nd)");
             else
             {
-                p.RemoveInsns(ilRef, 13);
+                p.RemoveInsns(ilRef, 6);
             }
         }
     }

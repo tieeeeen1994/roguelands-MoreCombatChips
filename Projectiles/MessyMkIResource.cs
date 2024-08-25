@@ -30,10 +30,9 @@ namespace TienContentMod.Projectiles
                     case "Plane_001":
                         Object.Destroy(child.gameObject);
                         break;
-
                     case "eye":
                         CreateClone(child.gameObject);
-                        child.material.SetTexture("_MainTex", GadgetCoreAPI.LoadTexture2D("MessyOneGray"));
+                        child.material.SetTexture("_MainTex", GadgetCoreAPI.LoadTexture2D("Projectiles/MessyOneGray"));
                         child.sortingOrder = 1;
                         break;
                 }
@@ -42,10 +41,14 @@ namespace TienContentMod.Projectiles
 
         private void CreateClone(GameObject gameObjectToClone)
         {
-            GameObject clone = Object.Instantiate(gameObjectToClone, gameObjectToClone.transform.position,
-                                                  gameObjectToClone.transform.rotation, gameObjectToClone.transform.parent);
+            GameObject clone = Object.Instantiate(
+                gameObjectToClone,
+                gameObjectToClone.transform.position,
+                gameObjectToClone.transform.rotation,
+                gameObjectToClone.transform.parent
+            );
             MeshRenderer cloneMesh = clone.GetComponent<MeshRenderer>();
-            cloneMesh.material.SetTexture("_MainTex", GadgetCoreAPI.LoadTexture2D("MessyOneBrown"));
+            cloneMesh.material.SetTexture("_MainTex", GadgetCoreAPI.LoadTexture2D("Projectiles/MessyOneBrown"));
             cloneMesh.sortingOrder = 0;
         }
     }

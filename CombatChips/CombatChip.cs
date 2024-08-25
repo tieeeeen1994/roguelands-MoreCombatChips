@@ -18,6 +18,8 @@ namespace TienContentMod.CombatChips
             _chipInfo = new CI(Type, Name, Description, Cost, ObjectTexture, Stats, CostType);
         }
 
+        public Texture2D ObjectTexture => GadgetCoreAPI.LoadTexture2D($"CombatChips/{GetType().Name}");
+
         public virtual int Damage => 0;
 
         public virtual ChipType Type => ChipType.PASSIVE;
@@ -27,8 +29,6 @@ namespace TienContentMod.CombatChips
         public virtual string Description => "Tien's Modded Combat Chip.";
 
         public virtual int Cost => -1;
-
-        public virtual Texture2D ObjectTexture => GadgetCoreAPI.LoadTexture2D(GetType().Name);
 
         public virtual EquipStats Stats => new EquipStats(0);
 
