@@ -104,10 +104,11 @@ namespace TienContentMod.Patches.MiscellaneousPatches
             "Denam", "Catiua", "Vyce", // Tactics Ogre
             "Oracle", "Cross", "Oblige", "Cerbus", "Blanc", // Internal
             "Lenneth", "Silmeria", "Hrist", // Valkyrie Profile
-            "Marian", "Rapi", "Anis", "Neon", "Chatterbox", // Nikke
+            "Marian", "Rapi", "Anis", "Neon", "Chatterbox", "Blanc", "Noir", "Laplace", "Scarlet", "Dorothy",
+            "Soline", "Epinel", "Tia", "Naga", "Marciana", "Zwei", "Ein", "Anchor", "Liter", "", // Nikke
             "Ryu", "Nina", "Momo", "Garr", "Rei", // Breath of Fire
             "Revya", "Gig", "Danette", "Laharl", "Etna", "Flonne", "Valvatorez", "Artina", "Fenrich", "Desco",
-            "Ash", "Marona", "Priere", "Culotte", "Alouette", "Zetta", "Petta", "Pram", // Nippon Ichi
+            "Marona", "Priere", "Culotte", "Alouette", "Zetta", "Petta", "Pram", // Nippon Ichi
             "Goku", "Vegeta", "Bulma", // Dragon Ball
             "Reimu", "Marisa", "Sanae", // Touhou
             "Pixy", "Blaze", "Chopper", "Archer", "Edge", "Trigger", "Talisman", "Shamrock", // Ace Combat
@@ -132,7 +133,8 @@ namespace TienContentMod.Patches.MiscellaneousPatches
             "Dante", "Vergil", "Nero", // Devil May Cry
             "Kiryu", "Majima", "Nishiki", // Yakuza
             "Crono", "Marle", "Lucca", // Chrono Trigger
-            "Chen", "Phenx", "Urak" // Long Dead Project Transcendence...
+            "Shinji", "Asuka", "Rei", "Misato", "Kaworu", "Mari", "Gendo", // Evangelion
+            "Chen", "Phenx", "Urak", // Long Dead Project Transcendence...
         };
     }
 }

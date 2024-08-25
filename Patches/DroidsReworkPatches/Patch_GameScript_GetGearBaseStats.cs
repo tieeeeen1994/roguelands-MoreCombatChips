@@ -16,9 +16,6 @@ namespace TienContentMod.Patches.DroidsReworkPatches
         {
             switch (id)
             {
-                case ItemID.GadgetRPG:
-                    __result = StatService.NewStats(VIT: 2, TEC: 6);
-                    return false;
                 case ItemID.RCK22:
                     __result = StatService.NewStats(STR: 1);
                     return false;
