@@ -27,6 +27,7 @@ namespace TienContentMod.Patches.DroidsReworkPatches
         }
 
         [HarmonyTranspiler]
+        [HarmonyOverridden("BigNumberCore.BigNumberCore.gadget")]
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
         {
             var p = TranspilerHelper.CreateProcessor(insns, il);

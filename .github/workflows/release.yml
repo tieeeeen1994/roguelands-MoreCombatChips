@@ -48,17 +48,17 @@ jobs:
         prerelease: false
         artifacts: Release/TienContentMod_v*.zip
 
-    - name: Delete Release folder
-      if: env.exists == 'true'
-      run: rm -rf Release
+    # - name: Delete Release folder
+    #   if: env.exists == 'true'
+    #   run: rm -rf Release
 
-    - name: Commit changes
-      if: env.exists == 'true'
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add .
-        git commit -m "GitHub Actions: Delete Release folder after creating release."
-        git push origin HEAD:master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Commit changes
+    #   if: env.exists == 'true'
+    #   run: |
+    #     git config --global user.name 'github-actions[bot]'
+    #     git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+    #     git add .
+    #     git commit -m "GitHub Actions: Delete Release folder after creating release."
+    #     git push origin HEAD:master
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

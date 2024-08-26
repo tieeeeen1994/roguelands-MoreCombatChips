@@ -41,6 +41,7 @@ namespace TienContentMod.Patches.BetterAugmentsPatches
         }
 
         [HarmonyTranspiler]
+        [HarmonyOverridden("GadgetCore.core")]
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
         {
             var p = TranspilerHelper.CreateProcessor(insns, il);
