@@ -1,6 +1,5 @@
-Allow smoother compatibility with BigNumberCore and Gadget Core by patching their patches with Transpilers.
-As a result, Droids Rework gadget will work properly with BigNumberCore.
-Better Augment's Gas Mask changes will also work properly with modded chips powered by GadgetCore.
+Add stats to basic droid (1 VIT) and sword (1 STR).
+Gold 15 now adds 1 TECT as well.
 
 Description:
 This mod was formerly known as "More Combat Chips". In "2.0.0", the update reformed the mod into separating features to respective gadgets powered by Gadget Core.
