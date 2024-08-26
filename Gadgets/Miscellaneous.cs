@@ -18,6 +18,7 @@ namespace TienContentMod.Gadgets
         {
             Logger.Log($"{GADGET_NAME} v{Info.Mod.Version}");
             Item<SCRP02>.I.Register();
+            Item<IronSword>.I.Register();
         }
     }
 }

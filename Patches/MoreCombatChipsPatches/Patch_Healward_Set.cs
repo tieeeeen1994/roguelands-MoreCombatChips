@@ -60,7 +60,9 @@ namespace TienContentMod.Patches.MoreCombatChipsPatches
             MoreCombatChips.Log("Patch_GameScript_UpdateHP: ScaledAugur works!");
             int healPoints = 2;
             if (ChipService.IsChipEquipped(CombatChip<RejuvenationWaveChip>.ID) > 0)
+            {
                 healPoints += InstanceTracker.GameScript.GetFinalStat(StatID.FTH) / 50;
+            }
             return healPoints;
         }
 
@@ -69,7 +71,9 @@ namespace TienContentMod.Patches.MoreCombatChipsPatches
             MoreCombatChips.Log("Patch_GameScript_UpdateHP: ScaledHealWard works!");
             int healPoints = 1;
             if (ChipService.IsChipEquipped(CombatChip<RejuvenationWaveChip>.ID) > 0)
+            {
                 healPoints += InstanceTracker.GameScript.GetFinalStat(StatID.FTH) / 100;
+            }
             return healPoints;
         }
 

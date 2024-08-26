@@ -22,5 +22,11 @@ namespace TienContentMod.Services
         {
             return new List<int> { VIT, STR, DEX, TEC, MAG, FTH };
         }
+
+        public static float[] Multipliers(float VIT = 0, float STR = 0, float DEX = 0,
+                                          float TEC = 0, float MAG = 0, float FTH = 0)
+        {
+            return new float[] { VIT, STR, DEX, TEC, MAG, FTH };
+        }
     }
 }
