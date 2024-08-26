@@ -1,5 +1,6 @@
 using GadgetCore.API;
 using TienContentMod.Gadgets;
+using TienContentMod.Services;
 using UnityEngine;
 
 namespace TienContentMod.Items
@@ -19,5 +20,7 @@ namespace TienContentMod.Items
         protected override Texture BodyTex => GadgetCoreAPI.LoadTexture2D("Droids/BasicDroidBody");
 
         protected override ItemType Type => ItemType.DROID;
+
+        protected override EquipStats Stats => StatService.EquipStats(VIT: 1);
     }
 }

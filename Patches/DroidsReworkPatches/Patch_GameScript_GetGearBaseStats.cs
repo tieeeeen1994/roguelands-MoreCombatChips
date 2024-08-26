@@ -113,7 +113,7 @@ namespace TienContentMod.Patches.DroidsReworkPatches
                     return false;
 
                 case ItemID.GOLD15:
-                    __result = StatService.NewStats();
+                    __result = StatService.NewStats(TEC: 1);
                     return false;
 
                 default:
