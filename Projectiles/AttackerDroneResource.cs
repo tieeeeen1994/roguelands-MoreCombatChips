@@ -30,6 +30,7 @@ namespace TienContentMod.Projectiles
                     case "eye":
                         Object.Destroy(child.gameObject);
                         break;
+
                     case "Plane":
                         child.material.SetTexture("_MainTex", GadgetCoreAPI.LoadTexture2D("Projectiles/B2"));
                         break;

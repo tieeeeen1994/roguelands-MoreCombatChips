@@ -1,7 +1,4 @@
-Renamed the mod and restructored the code.
-
-This mod was formerly known as "More Combat Chips". In "2.0.0", the update reformed the mod into separating features to respective gadgets powered by Gadget Core.
-The mod isn't anymore just about having more Combat Chips, but also trying to fix some issues and reworking vanilla content. Henceforth, this mod is now called "Tien Content Mod". Please uninstall "More Combat Chips" mod.
+Fixed a patch that
 
 Description:
 This mod contains 4 gadgets powered by Gadget Core.
@@ -19,3 +16,4 @@ Droids Rework
 Miscellaneous
 - Gadget RPG now increases TEC instead of DEX and FTH.
 - Add more random names from franchises for character creation.
+- Newly created characters now only get a basic droid and weapon to avoid an ensured gold tier aetherblade.

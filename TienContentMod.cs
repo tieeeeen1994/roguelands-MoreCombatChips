@@ -1,3 +1,9 @@
+//#define TEST
+
+#if TEST
+#warning TEST is defined. Set this to false before release.
+#endif
+
 using System;
 using System.Collections.Generic;
 using TienContentMod.Gadgets;
@@ -12,7 +18,14 @@ namespace TienContentMod
         public const string MOD_AUTHOR = "Tien";
         public const string COPYRIGHT = "© 2020 Tien. All rights reserved.";
 
-        internal static bool TEST = true;
+        internal const bool TEST =
+#if TEST
+            true;
+
+#else
+            false;
+
+#endif
 
         private static readonly Dictionary<string, Action<string>> GadgetLoggers =
             new Dictionary<string, Action<string>>()
