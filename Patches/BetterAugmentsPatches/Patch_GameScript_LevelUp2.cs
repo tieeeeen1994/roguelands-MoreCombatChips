@@ -62,6 +62,7 @@ namespace TienContentMod.Patches.BetterAugmentsPatches
                 case AugmentID.RebellionHeadpiece:
                     array2[StatID.DEX] += 2;
                     break;
+
                 case AugmentID.CreatorMask:
                     if (Util.RandomCheck(25))
                     {

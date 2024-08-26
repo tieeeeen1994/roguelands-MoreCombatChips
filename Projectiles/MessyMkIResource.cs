@@ -30,6 +30,7 @@ namespace TienContentMod.Projectiles
                     case "Plane_001":
                         Object.Destroy(child.gameObject);
                         break;
+
                     case "eye":
                         CreateClone(child.gameObject);
                         child.material.SetTexture("_MainTex", GadgetCoreAPI.LoadTexture2D("Projectiles/MessyOneGray"));

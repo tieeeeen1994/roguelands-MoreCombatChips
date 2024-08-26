@@ -2,6 +2,7 @@ using GadgetCore.API;
 using TienContentMod.Gadgets;
 using TienContentMod.Services;
 using UnityEngine;
+using II = GadgetCore.API.ItemInfo;
 
 namespace TienContentMod.Items
 {
@@ -19,15 +20,16 @@ namespace TienContentMod.Items
 
         protected override ItemType Type => ItemType.WEAPON;
 
-        protected override void CustomActions(ItemInfo itemInfo)
+        protected override EquipStats Stats => StatService.EquipStats(STR: 1);
+
+        protected override void CustomActions(II itemInfo)
         {
             itemInfo.OnAttack += itemInfo.SwingSword;
-
             itemInfo.SetWeaponInfo(
                 StatService.Multipliers(STR: 1f),
+                //GadgetCoreAPI.LoadAudioClip("Weapons/Swing")
                 GadgetCoreAPI.GetAttackSound(300)
             );
-            // Use custom sound here.
         }
     }
 }

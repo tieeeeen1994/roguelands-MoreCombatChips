@@ -19,6 +19,7 @@ namespace TienContentMod.Patches.MiscellaneousPatches
                 case ItemID.GadgetRPG:
                     __result = StatService.NewStats(VIT: 2, TEC: 6);
                     return false;
+
                 default:
                     return true;
             }

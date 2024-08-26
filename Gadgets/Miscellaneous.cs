@@ -12,7 +12,8 @@ namespace TienContentMod.Gadgets
 
         protected override string GadgetDescription =>
             "- Gadget RPG now increases TEC instead of DEX and FTH.\n" +
-            "- Add more random names from franchises for character creation.";
+            "- Add more random names from franchises for character creation.\n" +
+            "- Newly created characters now only get a basic droid and weapon to avoid an ensured gold tier aetherblade.";
 
         protected override void Initialize()
         {

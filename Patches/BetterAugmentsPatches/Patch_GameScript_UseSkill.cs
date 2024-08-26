@@ -55,6 +55,7 @@ namespace TienContentMod.Patches.BetterAugmentsPatches
             {
                 case AugmentID.GasMask:
                     return GameScript.mana >= cost || GameScript.energy >= cost;
+
                 default:
                     return GameScript.mana >= cost;
             }
@@ -75,6 +76,7 @@ namespace TienContentMod.Patches.BetterAugmentsPatches
                         instance.UpdateEnergy();
                     }
                     break;
+
                 default:
                     GameScript.mana -= cost;
                     break;

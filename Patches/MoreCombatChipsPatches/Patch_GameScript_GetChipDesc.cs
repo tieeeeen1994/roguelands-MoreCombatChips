@@ -18,6 +18,7 @@ namespace TienContentMod.Patches.MoreCombatChipsPatches
                 case CombatChipID.Quadracopter:
                     __result = "Summon a Quadracopter that shoots 15 projectiles.\nScales with 3x TEC.";
                     return false;
+
                 default:
                     return true;
             }

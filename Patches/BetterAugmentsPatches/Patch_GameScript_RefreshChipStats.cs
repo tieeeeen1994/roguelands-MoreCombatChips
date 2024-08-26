@@ -31,6 +31,7 @@ namespace TienContentMod.Patches.BetterAugmentsPatches
                             }
                         }
                         break;
+
                     case AugmentID.ShroomHat:
                         for (int i = 0; i < chipStats.Length; i++)
                         {

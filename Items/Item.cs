@@ -38,9 +38,11 @@ namespace TienContentMod.Items
 
         protected virtual Texture ArmTex => null;
 
-        protected virtual void CustomActions(ItemInfo itemInfo) { }
+        protected virtual void CustomActions(ItemInfo itemInfo)
+        { }
 
-        protected virtual void AddRequiredResources() { }
+        protected virtual void AddRequiredResources()
+        { }
 
         public void Register()
         {

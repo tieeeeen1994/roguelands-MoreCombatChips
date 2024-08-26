@@ -36,9 +36,11 @@ namespace TienContentMod.CombatChips
 
         public virtual bool Advanced => false;
 
-        protected virtual void Action(int slot) { }
+        protected virtual void Action(int slot)
+        { }
 
-        protected virtual void AddRequiredResources() { }
+        protected virtual void AddRequiredResources()
+        { }
 
         public void Register()
         {

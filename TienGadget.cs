@@ -7,7 +7,9 @@ namespace TienContentMod
     {
         public abstract string ConfigVersion { get; }
         protected abstract string GadgetDescription { get; }
-        protected virtual void GadgetConfig() { }
+
+        protected virtual void GadgetConfig()
+        { }
 
         internal static bool DebugLog = false;
 
