@@ -37,6 +37,11 @@
     <NoWarn>1701;1702</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="References\**" />
+    <EmbeddedResource Remove="References\**" />
+    <None Remove="References\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="0Harmony">
       <HintPath>$(GamePath)$(ManagedFolder)0Harmony.dll</HintPath>
       <Private>false</Private>
@@ -44,6 +49,9 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>$(GamePath)$(ManagedFolder)Assembly-CSharp.dll</HintPath>
       <Private>false</Private>
+    </Reference>
+    <Reference Include="BigNumberCore">
+      <HintPath>References\BigNumberCore.dll</HintPath>
     </Reference>
     <Reference Include="GadgetCore">
       <HintPath>$(GamePath)$(ManagedFolder)GadgetCore.dll</HintPath>

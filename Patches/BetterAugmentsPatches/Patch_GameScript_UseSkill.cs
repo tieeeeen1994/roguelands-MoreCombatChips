@@ -117,7 +117,7 @@ namespace TienContentMod.Patches.BetterAugmentsPatches
             });
             if (ilRef == null)
             {
-                BetterAugments.Log("Patch_GameScript_UseSkill: Reference not found.");
+                BetterAugments.Log("Patch_GameScript_UseSkill: Reference not found. (EmitManaConsume)");
             }
             else
             {
