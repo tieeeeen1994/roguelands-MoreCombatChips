@@ -22,15 +22,27 @@ namespace TienContentMod.Patches.DroidsReworkPatches
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
         {
             var p = TranspilerHelper.CreateProcessor(insns, il);
-            var ilRef = p.FindRefByInsns(new CodeInstruction[]
+            var ilRefStart = p.FindRefByInsns(new CodeInstruction[]
             {
                 new CodeInstruction(OpCodes.Ldarg_0),
                 new CodeInstruction(OpCodes.Ldfld, CheatString),
-                new CodeInstruction(OpCodes.Ldstr, "2211221100")
+                new CodeInstruction(OpCodes.Ldstr, "2211221100"),
+                new CodeInstruction(OpCodes.Call)
             });
-            if (ilRef == null)
+            var ilRefEnd = p.FindRefByInsns(new CodeInstruction[]
+            {
+                new CodeInstruction(OpCodes.Ldarg_0),
+                new CodeInstruction(OpCodes.Ldfld, CheatString),
+                new CodeInstruction(OpCodes.Ldstr, "1111222200"),
+                new CodeInstruction(OpCodes.Call)
+            });
+            if (ilRefStart == null || ilRefEnd == null)
             {
                 DroidsRework.Log("Patch_GameScript_CheckCheat: Reference not found.");
+            }
+            else
+            {
+                p.RemoveInsns(ilRefStart, ilRefEnd);
             }
             return p.Insns;
         }
