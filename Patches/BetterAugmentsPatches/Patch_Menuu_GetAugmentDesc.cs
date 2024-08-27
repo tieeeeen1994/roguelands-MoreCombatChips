@@ -48,7 +48,7 @@ namespace TienContentMod.Patches.BetterAugmentsPatches
 
                 case AugmentID.ShmooHat:
                     __result = "It terrifyingly looks like a real Shmoo. It's not, right?\n" +
-                               "Monster drops are tripled.";
+                               "Monster Loot drops are tripled.";
                     return false;
 
                 case AugmentID.ShroomHat:

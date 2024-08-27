@@ -20,21 +20,35 @@ This mod contains 4 gadgets powered by [GadgetCore](https://github.com/SuperKael
 ### More Combat Chips
 
 - Adds new Combat Chips.
+- Attacker Drone: Places a drone capable of attacking from above and below.
+- Messy Mk. I: Throw Messy so it wreaks havoc to enemies near it. It needs energy to power it up.
+- Rejuvenation Wave: Healing Ward heals +1 HP more per 100 FTH. Angelic Augur heals +1 more HP per 50 FTH. This chip is not stackable.
+- Passive chips that boosts stats now have XX version, which boosts respective stats by 24.
 - Quadracopter is functionally fixed for multiplayer.
 - Quadracopter now only costs 30 MP. (Configurable)
 
 ### Better Augments
 
 - Mech City Beanie is buffed to fully recover health and mana when beaming.
-- Adds new effects to augments that had no effect.
-- Reworks negative augments to have a positive effect.
+- Rebellion Headpiece: Max HP is now 75. Gain 2 DEX per level up.
+- Creator Mask: 25% chance to gain 1 MAG or 75% chance to gain 1 FTH.
+- Eyepod Hat: On level up, stats gained are double, but equipment is only 50% effective.
+- Gas Mask: When using a Combat Chip with insufficent mana, consume Stamina instead.
+- Glibglob Hat: Gain 50% more EXP from enemies.
+- Chamcham Hat: Gain 3% more chance into crafting higher tiered gear.
+- Shmoo Hat: Monster loot drops are tripled.
+- Shroom Hat: Combat Chips provide twice the effect when enhancing stats.
+- Slime Hat: Gain double EXP from the Gear Chalice.
 
 ### Droids Rework
 
 - Droids are now affected by level scaling.
 - Due to scaling, the vanilla base stats are too high, so they are adjusted.
+- Gold 15 is now obtainable through Mystery Gift.
+- The code to acquire Gold 15 is removed.
 
 ### Miscellaneous
 
 - Gadget RPG now increases TEC instead of DEX and FTH.
 - Add more random names from franchises for character creation.
+- Newly created characters now only get a basic droid and weapon to avoid an ensured gold tier Aetherblade.
