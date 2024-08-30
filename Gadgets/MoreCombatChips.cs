@@ -12,6 +12,12 @@ namespace TienContentMod.Gadgets
 
         protected override string GadgetDescription =>
             "- Adds new Combat Chips.\n" +
+            "- Attacker Drone: Places a drone capable of attacking from above and below.\n" +
+            "- Messy Mk. I: Throw Messy so it wreaks havoc to enemies near it. It needs energy to power it up.\n" +
+            "- Rejuvenation Wave: Healing Ward heals +1 HP more per 100 FTH. " +
+            "Angelic Augur heals +1 more HP per 50 FTH. This chip is not stackable.\n" +
+            "- Blood Offering: Sacrifice 10 health to recover 50 mana.\n" +
+            "- Passive chips that boosts stats now have XX version, which boosts respective stats by 24.\n" +
             "- Quadracopter is functionally fixed for multiplayer.\n" +
             "- Quadracopter now only costs 30 MP. (Configurable)";
 
@@ -38,6 +44,7 @@ namespace TienContentMod.Gadgets
             CombatChip<TechXXChip>.I.Register();
             CombatChip<FaithXXChip>.I.Register();
             CombatChip<RejuvenationWaveChip>.I.Register();
+            CombatChip<BloodOfferingChip>.I.Register();
         }
     }
 }

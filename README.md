@@ -23,6 +23,7 @@ This mod contains 4 gadgets powered by [GadgetCore](https://github.com/SuperKael
 - Attacker Drone: Places a drone capable of attacking from above and below.
 - Messy Mk. I: Throw Messy so it wreaks havoc to enemies near it. It needs energy to power it up.
 - Rejuvenation Wave: Healing Ward heals +1 HP more per 100 FTH. Angelic Augur heals +1 more HP per 50 FTH. This chip is not stackable.
+- Blood Offering: Sacrifice 10 health to recover 50 mana.
 - Passive chips that boosts stats now have XX version, which boosts respective stats by 24.
 - Quadracopter is functionally fixed for multiplayer.
 - Quadracopter now only costs 30 MP. (Configurable)

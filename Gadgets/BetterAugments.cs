@@ -12,8 +12,16 @@ namespace TienContentMod.Gadgets
 
         protected override string GadgetDescription =>
             "- Mech City Beanie is buffed to fully recover health and mana when beaming.\n" +
-            "- Adds new effects to augments that had no effect.\n" +
-            "- Reworks negative augments to have a positive effect.";
+            "- Mech City Beanie is buffed to fully recover health and mana when beaming.\n" +
+            "- Rebellion Headpiece: Max HP is now 75. Gain 2 DEX per level up.\n" +
+            "- Creator Mask: 25% chance to gain 1 MAG or 75% chance to gain 1 FTH.\n" +
+            "- Eyepod Hat: On level up, stats gained are double, but equipment is only 50% effective.\n" +
+            "- Gas Mask: When using a Combat Chip with insufficent mana, consume Stamina instead.\n" +
+            "- Glibglob Hat: Gain 50% more EXP from enemies.\n" +
+            "- Chamcham Hat: Gain 3% more chance into crafting higher tiered gear.\n" +
+            "- Shmoo Hat: Monster loot drops are tripled.\n" +
+            "- Shroom Hat: Combat Chips provide twice the effect when enhancing stats.\n" +
+            "- Slime Hat: Gain double EXP from the Gear Chalice.";
 
         protected override void Initialize()
         {
