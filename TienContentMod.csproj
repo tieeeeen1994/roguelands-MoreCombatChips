@@ -53,6 +53,9 @@
     <Reference Include="BigNumberCore">
       <HintPath>References\BigNumberCore.dll</HintPath>
     </Reference>
+    <Reference Include="TiersPlus">
+      <HintPath>References\TiersPlus.dll</HintPath>
+    </Reference>
     <Reference Include="GadgetCore">
       <HintPath>$(GamePath)$(ManagedFolder)GadgetCore.dll</HintPath>
       <Private>false</Private>

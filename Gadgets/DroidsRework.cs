@@ -17,5 +17,16 @@ namespace TienContentMod.Gadgets
         {
             Logger.Log($"{GADGET_NAME} v{Info.Mod.Version}");
         }
+
+        internal static bool TiersPlusGold15 = true;
+
+        protected override void GadgetConfig()
+        {
+            TiersPlusGold15 = Config.ReadBool(
+                "TiersPlusGold15", true,
+                requiresRestart: true,
+                comments: "Removes Gold 15 from the Creation Machine added by Tiers+."
+            );
+        }
     }
 }
