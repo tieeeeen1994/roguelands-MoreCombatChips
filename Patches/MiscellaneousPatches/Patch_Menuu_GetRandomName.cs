@@ -135,6 +135,7 @@ namespace TienContentMod.Patches.MiscellaneousPatches
             "Crono", "Marle", "Lucca", // Chrono Trigger
             "Shinji", "Asuka", "Rei", "Misato", "Kaworu", "Mari", "Gendo", // Evangelion
             "Chen", "Phenx", "Urak", // Long Dead Project Transcendence...
+            "Kael", "Jdewi", "Aureuix", "Rebar", "Zariteis", "Saewin", "Microbot", "Tenebry" // New Roguelands
         };
     }
 }
