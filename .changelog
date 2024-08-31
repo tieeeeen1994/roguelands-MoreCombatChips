@@ -1,6 +1,7 @@
 Increased Old Earth chances of the modded chips to appear.
-
+Healing Wards and Angelic Augurs are now replaced when used again.
 Fixed that issue where you need to wait for the ward to wear off before you can cast it again.
+Compatibility patches implemented with BigNumberCore for the wards.
 
 Description:
 This mod was formerly known as "More Combat Chips". In "2.0.0", the update reformed the mod into separating features to respective gadgets powered by Gadget Core.
