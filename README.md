@@ -27,6 +27,7 @@ This mod contains 4 gadgets powered by [GadgetCore](https://github.com/SuperKael
 - Passive chips that boosts stats now have XX version, which boosts respective stats by 24.
 - Quadracopter is functionally fixed for multiplayer.
 - Quadracopter now only costs 30 MP. (Configurable)
+- Healing Wards and Angelic Augurs are now replaced when used again.
 
 ### Better Augments
 

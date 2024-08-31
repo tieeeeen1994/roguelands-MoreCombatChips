@@ -12,6 +12,7 @@ More Combat Chips
 - Passive chips that boosts stats now have XX version, which boosts respective stats by 24.
 - Quadracopter is functionally fixed for multiplayer.
 - Quadracopter now only costs 30 MP. (Configurable)
+- Healing Wards and Angelic Augurs are now replaced when used again.
 
 Better Augments
 - Mech City Beanie is buffed to fully recover health and mana when beaming.

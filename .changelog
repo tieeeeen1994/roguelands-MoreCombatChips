@@ -1,5 +1,7 @@
 Increased Old Earth chances of the modded chips to appear.
 
+Fixed that issue where you need to wait for the ward to wear off before you can cast it again.
+
 Description:
 This mod was formerly known as "More Combat Chips". In "2.0.0", the update reformed the mod into separating features to respective gadgets powered by Gadget Core.
 The mod isn't anymore just about having more Combat Chips, but also trying to fix some issues and reworking vanilla content. Henceforth, this mod is now called "Tien Content Mod". Please uninstall "More Combat Chips" mod.
@@ -15,6 +17,7 @@ More Combat Chips
 - Passive chips that boosts stats now have XX version, which boosts respective stats by 24.
 - Quadracopter is functionally fixed for multiplayer.
 - Quadracopter now only costs 30 MP. (Configurable)
+- Healing Wards and Angelic Augurs are now replaced when used again.
 
 Better Augments
 - Mech City Beanie is buffed to fully recover health and mana when beaming.

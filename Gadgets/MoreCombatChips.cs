@@ -19,7 +19,8 @@ namespace TienContentMod.Gadgets
             "- Blood Offering: Sacrifice 10 health to recover 50 mana.\n" +
             "- Passive chips that boosts stats now have XX version, which boosts respective stats by 24.\n" +
             "- Quadracopter is functionally fixed for multiplayer.\n" +
-            "- Quadracopter now only costs 30 MP. (Configurable)";
+            "- Quadracopter now only costs 30 MP. (Configurable)" +
+            "- Healing Wards and Angelic Augurs are now replaced when used again.";
 
         internal static bool QuadracopterCost = true;
 

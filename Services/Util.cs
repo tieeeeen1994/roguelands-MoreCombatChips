@@ -2,6 +2,7 @@ using HarmonyLib;
 using System.Collections.Generic;
 using System.Reflection.Emit;
 using TienContentMod.Gadgets;
+using UnityEngine;
 
 namespace TienContentMod.Services
 {
@@ -12,15 +13,24 @@ namespace TienContentMod.Services
             return UnityEngine.Random.Range(0, probability) < chance;
         }
 
-        public static void PrintInstructions(this IEnumerable<CodeInstruction> instructions)
+        public static void PrintComponents(this GameObject gameObject, string gadget)
+        {
+            Component[] components = gameObject.GetComponents(typeof(Component));
+            foreach (Component component in components)
+            {
+                TienContentMod.Log(gadget, component.ToString());
+            }
+        }
+
+        public static void PrintInstructions(this IEnumerable<CodeInstruction> instructions, string gadget)
         {
             int i = 0;
             foreach (var instruction in instructions)
             {
-                MoreCombatChips.Log("\n---- Instruction " + ++i + " ----");
-                MoreCombatChips.Log("\nCode: " + instruction.opcode ?? "null");
-                MoreCombatChips.Log("\nOperand: " + instruction.operand ?? "null");
-                MoreCombatChips.Log("\nLabels:");
+                TienContentMod.Log(gadget, "\n---- Instruction " + ++i + " ----");
+                TienContentMod.Log(gadget, "\nCode: " + instruction.opcode ?? "null");
+                TienContentMod.Log(gadget, "\nOperand: " + instruction.operand ?? "null");
+                TienContentMod.Log(gadget, "\nLabels:");
                 PrintLabels(instruction.labels);
             }
         }
