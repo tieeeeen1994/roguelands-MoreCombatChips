@@ -26,7 +26,7 @@ namespace TienContentMod.Patches.DroidsReworkPatches
         public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> insns, ILGenerator il)
         {
             var p = TranspilerHelper.CreateProcessor(insns, il);
-            if (DroidsRework.TiersPlusGold15)
+            if (DroidsRework.TiersPlusGold)
             {
                 var ilRef = p.FindRefByInsns(new CodeInstruction[]
                 {

@@ -14,8 +14,6 @@ namespace TienContentMod.Services
 
         public static List<CombatChip> ModdedChips => _moddedChips.ToList();
 
-        public static List<CombatChip> AllAdvancedChips => ModdedChips.FindAll(mc => mc.Advanced);
-
         public static bool Register(CombatChip combatChip)
         {
             if (_moddedChips.Exists(mc => mc.ChipInfo.GetRegistryName() == combatChip.ChipInfo.GetRegistryName()))
@@ -29,9 +27,13 @@ namespace TienContentMod.Services
             }
         }
 
-        public static int RandomlyGetIDFromAdvanced()
+        public static int RandomlyGetIDFromAdvanced(Func<CombatChip, bool> extraChecks = null)
         {
-            var advancedChips = AllAdvancedChips;
+            if (extraChecks == null)
+            {
+                extraChecks = _ => true;
+            }
+            var advancedChips = ModdedChips.FindAll(mc => mc.Advanced && extraChecks(mc));
             int randNum = UnityEngine.Random.Range(0, advancedChips.Count);
             return advancedChips[randNum].ChipInfo.GetID();
         }
