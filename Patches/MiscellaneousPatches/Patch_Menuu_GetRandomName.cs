@@ -134,8 +134,10 @@ namespace TienContentMod.Patches.MiscellaneousPatches
             "Kiryu", "Majima", "Nishiki", // Yakuza
             "Crono", "Marle", "Lucca", // Chrono Trigger
             "Shinji", "Asuka", "Rei", "Misato", "Kaworu", "Mari", "Gendo", // Evangelion
+            "Francis", "Zoey", "Bill", "Louis", "Nick", "Ellis", "Rochelle", "Coach", // Left 4 Dead
             "Chen", "Phenx", "Urak", // Long Dead Project Transcendence...
-            "Kael", "Jdewi", "Aureuix", "Rebar", "Zariteis", "Saewin", "Microbot", "Tenebry" // New Roguelands
+            "Kael", "Jdewi", "Aureuix", "Rebar", "Zariteis", "Saewin", "Microbot", "Tenebry", "Suneko", "Kavaline",
+            "Panda", "Makaidos", "Amarodil", "Scourgefall" // New Roguelands
         };
     }
 }
