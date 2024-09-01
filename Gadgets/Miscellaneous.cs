@@ -14,7 +14,8 @@ namespace TienContentMod.Gadgets
             "- Gadget RPG now increases TEC instead of DEX and FTH.\n" +
             "- Add more random names from franchises for character creation.\n" +
             "- Newly created characters now only get a basic droid and weapon to " +
-            "avoid an ensured gold tier Aetherblade.";
+            "avoid an ensured gold tier Aetherblade.\n" +
+            "- Fix the enemies on Cathedral when Challenge level is greater than 0.";
 
         protected override void Initialize()
         {

@@ -1,5 +1,6 @@
 Add more random names from the New Roguelands Discord Server, as well as hints for Scourgefall as random names.
 Nerf attacker drone projectiles as they deal too much damage. They no longer pierce.
+Fix the enemies on Cathedral when Challenge level is greater than 0.
 
 Description:
 This mod was formerly known as "More Combat Chips". In "2.0.0", the update reformed the mod into separating features to respective gadgets powered by Gadget Core.
@@ -40,3 +41,4 @@ Miscellaneous
 - Gadget RPG now increases TEC instead of DEX and FTH.
 - Add more random names from franchises for character creation.
 - Newly created characters now only get a basic droid and weapon to avoid an ensured gold tier Aetherblade.
+- Fix the enemies on Cathedral when Challenge level is greater than 0.

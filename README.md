@@ -54,3 +54,4 @@ This mod contains 4 gadgets powered by [GadgetCore](https://github.com/SuperKael
 - Gadget RPG now increases TEC instead of DEX and FTH.
 - Add more random names from franchises for character creation.
 - Newly created characters now only get a basic droid and weapon to avoid an ensured gold tier Aetherblade.
+- Fix the enemies on Cathedral when Challenge level is greater than 0.
