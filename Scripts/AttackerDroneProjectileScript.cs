@@ -19,7 +19,7 @@ namespace TienContentMod.Scripts
         private float yRate = 0.3f;
         private readonly float deathTimer = 1.5f;
         private readonly float minXSpeed = .75f;
-        private readonly float maxYSpeed = 40f;
+        private readonly float maxYSpeed = 30f;
 
         public void Set(int damage, int rangedMods, int xDirection, int yDirection)
         {
@@ -89,14 +89,14 @@ namespace TienContentMod.Scripts
         {
             if (c.gameObject.layer == 9 || c.gameObject.layer == 28)
             {
-                float[] array = new float[] { damage, -100f }; // -100f is no knockback
-
                 // We don't want to damage enemies locally, or else there will be a life difference from server and client.
                 // Always follow the server, and only damage in the server.
                 if (Network.isServer)
                 {
+                    float[] array = new float[] { damage, -100f }; // -100f is no knockback
                     c.gameObject.SendMessage("TD", array);
                 }
+                transform.position = new Vector3(-500f, -500f, -500f); // Hide the projectile.
             }
         }
 
