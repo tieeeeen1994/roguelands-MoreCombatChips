@@ -16,7 +16,7 @@ namespace TienContentMod.CombatChips
         public override string Description => "Throw Messy so it wreaks havoc to enemies near it." +
                                               "It needs energy to power it up.";
 
-        public override int Cost => 30;
+        public override int Cost => 50;
 
         public override ChipInfo.ChipCostType CostType => ChipInfo.ChipCostType.ENERGY;
 
