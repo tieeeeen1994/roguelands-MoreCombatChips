@@ -7,7 +7,7 @@ namespace TienContentMod.CombatChips
 {
     public class MessyMkIChip : CombatChip
     {
-        public override int Damage => Mathf.Min(1, InstanceTracker.GameScript.GetFinalStat(3) / 10);
+        public override int Damage => Mathf.Min(1, InstanceTracker.GameScript.GetFinalStat(3) / 3);
 
         public override ChipType Type => ChipType.ACTIVE;
 

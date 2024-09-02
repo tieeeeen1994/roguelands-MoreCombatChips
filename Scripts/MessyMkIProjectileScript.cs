@@ -66,16 +66,14 @@ namespace TienContentMod.Scripts
         {
             if (c.gameObject.layer == 9 || c.gameObject.layer == 28)
             {
-                float[] array = new float[] { damage, -100f }; // -100f is no knockback
-
                 // We don't want to damage enemies locally, else there will be a life difference from server and client.
                 // Always follow the server, and only damage in the server.
                 if (Network.isServer)
                 {
+                    float[] array = new float[] { damage, -100f }; // -100f is no knockback
                     c.gameObject.SendMessage("TD", array);
                 }
-
-                Destroy(gameObject);
+                transform.position = new Vector3(-500f, -500f, -500f); // Hide the projectile.
             }
         }
     }
